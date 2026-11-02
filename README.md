@@ -6,6 +6,7 @@
 ![Homarr](https://img.shields.io/badge/Homarr-v2-FA5252)
 ![Beszel](https://img.shields.io/badge/Beszel-monitorizaci%C3%B3n-2F9E44)
 ![Caddy](https://img.shields.io/badge/Caddy-2-1F88C0?logo=caddy&logoColor=white)
+![CrowdSec](https://img.shields.io/badge/CrowdSec-bloqueo_de_IPs-6E3FD3)
 ![Tailscale](https://img.shields.io/badge/Tailscale-VPN-242424?logo=tailscale&logoColor=white)
 ![AdGuard Home](https://img.shields.io/badge/AdGuard_Home-DNS-68BC71?logo=adguard&logoColor=white)
 ![Home Assistant](https://img.shields.io/badge/Home_Assistant-dom%C3%B3tica-18BCF2?logo=homeassistant&logoColor=white)
@@ -49,19 +50,20 @@ Sobre el papel, la mudanza fue un *downgrade*: de un Ryzen 5 5600 con 16 GB a un
 
 Los porqués, la prueba previa y cómo fue la mudanza: más en [Servidor](docs/08-servidor-nuevo.md#por-qué-no-es-un-paso-atrás).
 
-### Novedades (31 de octubre – 2 de noviembre de 2026)
+### Novedades (2 y 3 de noviembre de 2026)
 
-- **[Servidor asentado](docs/08-servidor-nuevo.md#después-de-la-mudanza-asentar-el-servidor-31-oct):** RAM ampliada a 16 GB y probada, discos en su sitio definitivo, el conflicto de IP de Caddy resuelto y **46,4 GiB recuperados** al volver a unir los hardlinks que perdió la copia.
-- **[Copias de seguridad](docs/12-copias-de-seguridad.md):** copia diaria en casa y **copia cifrada fuera de casa** con restic, con acceso mínimo a la nube. Y un disco de copias inestable por USB, ahora vigilado con avisos al móvil.
-- **[Fotos y archivos](docs/13-fotos-y-archivos.md):** Immich y Nextcloud, solo por Tailscale y con copia diaria.
-- **[Claude Code en el servidor](docs/08-servidor-nuevo.md#claude-code-en-el-servidor)** para administrarlo desde el móvil.
-- **[La tele LG que dejó de cargar](docs/02-reproduccion-multimedia.md#la-tele-lg-que-dejó-de-cargar-1-nov)** y el **[panel de descargas que mentía](docs/06-avisos-y-paneles.md#el-panel-de-descargas-que-mentía-31-oct)**, arreglados.
+- **[CrowdSec](docs/03-acceso-remoto-y-seguridad.md#crowdsec-bloqueo-automático-2-nov):** Caddy bloquea automáticamente las IPs que atacan. Lo probé lanzando un escáner contra mi propio dominio: el filtro por país lo paró en la puerta y CrowdSec lo marcó como malicioso.
+- **[El socket de Docker, en solo lectura](docs/03-acceso-remoto-y-seguridad.md#el-socket-de-docker-en-solo-lectura-2-nov):** Beszel ve los contenedores a través de un proxy, pero ya no podría tocarlos.
+- **[Una reacción en cadena en las descargas](docs/01-descarga-de-isos.md#mejoras-automáticas-una-reacción-en-cadena-2-nov),** diagnosticada y cortada, y **[125 GB compartidos protegidos con hardlinks](docs/01-descarga-de-isos.md#proteger-lo-que-se-está-compartiendo-2-nov)** sin ocupar ni un byte más.
+- **[La primera noche completa de copias](docs/12-copias-de-seguridad.md#la-primera-noche-completa-2-nov):** configuraciones, fotos, archivos y la copia cifrada, todas correctas.
+
+Del 31 de octubre y el 1 de noviembre: el [servidor asentado](docs/08-servidor-nuevo.md#después-de-la-mudanza-asentar-el-servidor-31-oct) (RAM a 16 GB y 46,4 GiB recuperados al volver a unir los hardlinks), [copias de seguridad](docs/12-copias-de-seguridad.md) dentro y fuera de casa, [fotos y archivos](docs/13-fotos-y-archivos.md) con Immich y Nextcloud, [Claude Code en el servidor](docs/08-servidor-nuevo.md#claude-code-en-el-servidor), y [la tele LG](docs/02-reproduccion-multimedia.md#la-tele-lg-que-dejó-de-cargar-1-nov) y el [panel de descargas que mentía](docs/06-avisos-y-paneles.md#el-panel-de-descargas-que-mentía-31-oct), arreglados.
 
 Del 30–31 de octubre: la [mudanza al OptiPlex](docs/08-servidor-nuevo.md#la-mudanza-3031-de-octubre), Quick Sync en Jellyfin, [AdGuard Home](docs/11-dns-adguard-home.md) y Homepage retirado.
 
 El historial completo, con cómo era cada parte antes, está en el [registro de cambios](CHANGELOG.md).
 
-_Última actualización: 2 de noviembre de 2026._
+_Última actualización: 3 de noviembre de 2026._
 
 ## Índice
 
@@ -147,7 +149,7 @@ Las descargas y la biblioteca viven bajo una misma carpeta `/data`, así la impo
 flowchart LR
     FAM["Familia"] -->|"HTTPS 443"| CADDY["Caddy<br/>HTTPS automático"]
     CADDY -->|"España, uso normal"| JF["Jellyfin"]
-    CADDY -->|"otros países, admin, bots"| X1["403 / 404"]
+    CADDY -->|"otros países, admin, bots,<br/>IPs bloqueadas por CrowdSec"| X1["403 / 404"]
     YO["Mis aparatos<br/>con Tailscale"] -->|"WireGuard"| TS["Tailscale<br/>«homelab»"]
     TS --> APPS["Homarr · gestores · descargas<br/>Beszel · AdGuard · Home Assistant"]
     NET["Resto de internet"] -.->|"sin puertos"| APPS
@@ -213,13 +215,15 @@ Todo corre en contenedores con Docker Compose, salvo Tailscale, que va instalado
 | | **Decluttarr** | Limpia descargas atascadas o fallidas | Solo interno |
 | Panel y monitorización | **Homarr** | Panel principal (Homepage, el anterior, retirado el 31-oct) | Casa |
 | | **Beszel** | Monitorización de recursos y alertas, del servidor y del PC | Casa |
+| | **docker-socket-proxy** | Acceso de solo lectura a Docker, para que Beszel no necesite el socket | Solo el propio servidor |
 | | **avisos** (propio) | Notificaciones por ntfy, página "Actividad" y paneles de descargas | Casa |
 | Red | **AdGuard Home** | DNS con bloqueo de anuncios y rastreadores, DoH hacia fuera | Casa |
 | Personal | **Immich** | Fotos, con subida automática desde el móvil | Solo Tailscale |
 | | **Nextcloud** | Archivos | Solo Tailscale |
 | Copias | **restic + rclone** | Copia cifrada fuera de casa | — |
 | Domótica | **Home Assistant** | Alarma de casa (estado, armado, fotos, historial) | Casa, nunca publicado |
-| Acceso remoto | **Caddy** | Proxy inverso con HTTPS automático; publica solo Jellyfin | Internet (443) |
+| Acceso remoto | **Caddy** | Proxy inverso con HTTPS automático y el módulo de CrowdSec; publica solo Jellyfin | Internet (443) |
+| | **CrowdSec** | Detecta ataques en los registros de Caddy y Jellyfin y bloquea esas IPs en Caddy | Solo interno |
 | | **DuckDNS** | Mantiene el dominio apuntando a la IP de casa | Solo interno |
 | | **Tailscale** | VPN para todo lo demás; instalado en el sistema, no en Docker | Mis aparatos |
 
@@ -299,7 +303,9 @@ Como desde ahí se puede desarmar la alarma, lo trato como la propia alarma: **u
 - **Fotos y archivos solo por Tailscale**, y **copia cifrada fuera de casa** con acceso mínimo a la nube.
 - **Claude Code en el servidor** sin permiso para leer los archivos de secretos, y sus comandos revisados antes de aprobarlos.
 - **Home Assistant** con 2FA y nunca publicado, porque desde él se puede desarmar la alarma.
-- **Plan de seguridad por fases:** pendientes CrowdSec y docker-socket-proxy y, más adelante, una red separada para IoT, cámaras e invitados. Más en [Plan](docs/03-acceso-remoto-y-seguridad.md#plan-de-seguridad-por-fases).
+- **CrowdSec** analiza los accesos de Caddy y los registros de Jellyfin (escaneos, vulnerabilidades web conocidas, fuerza bruta en el inicio de sesión, enumeración de usuarios) y bloquea en Caddy las IPs que atacan. Si CrowdSec se cae, Jellyfin sigue funcionando. Probado con un escáner externo contra mi propio dominio. Más en [CrowdSec](docs/03-acceso-remoto-y-seguridad.md#crowdsec-bloqueo-automático-2-nov).
+- **El socket de Docker, en solo lectura:** Beszel ya no lo monta; lo consulta a través de un docker-socket-proxy que solo deja leer y que no responde ni desde la red de casa ni desde Tailscale.
+- **Plan de seguridad por fases:** la fase 1 (con el servidor) está completa; lo siguiente es una red separada para IoT, cámaras e invitados. Más en [Plan](docs/03-acceso-remoto-y-seguridad.md#plan-de-seguridad-por-fases).
 - **Secretos fuera del compose**, en archivos `.env`. Homarr guarda las credenciales de sus integraciones **cifradas**, y tanto Homarr como Beszel usan **usuarios de solo lectura** donde es posible.
 
 > **Lo que descubrí:** con Caddy dentro de Docker en Windows, todo lo que llegaba de internet parecía venir de la red de casa, y Jellyfin permite algunas acciones (como reiniciar o apagar el servidor) a cualquiera que esté "en casa". Lo corregí bloqueando esas rutas en Caddy, definiendo bien las redes de Jellyfin y, después, sacando Caddy de Docker para ver la IP real. En el servidor nuevo, Linux conserva la IP real y Caddy ha vuelto a su contenedor. Más en [Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md).
@@ -316,12 +322,13 @@ Desde el 1 de noviembre, **Immich** (fotos, con subida automática desde el móv
 
 | Qué | En casa (disco de copias) | Fuera de casa (cifrada) |
 |---|---|---|
-| Configuraciones | ✅ Diaria, 14 días (~308 MB) | ✅ restic, 7 diarias + 4 semanales, verificación semanal |
+| Configuraciones | ✅ Diaria, 14 días (~310 MB) | ✅ restic, 7 diarias + 4 semanales, verificación semanal |
 | Fotos y archivos | ✅ Diaria, con volcado de bases de datos | Con el NAS futuro |
 | Biblioteca multimedia | ❌ Se puede volver a descargar | ❌ |
 
 - **Un RAID no es una copia:** no protege de un borrado, de un error de un programa o de un ransomware. Por eso, copias con historial.
 - **Mínimo privilegio:** la herramienta de copia solo ve en la nube los archivos que crea ella.
+- **La primera noche completa (2-nov):** todas las copias automáticas salieron bien, también la cifrada.
 - **La mudanza fue la mejor prueba:** las 17 configuraciones exportadas en Windows se restauraron en el servidor sin un solo fallo.
 - **Un disco de copias inestable:** se desconecta por USB de vez en cuando. Ahora un temporizador lo vigila cada minuto y avisa al móvil, y las copias no se ejecutan si no está montado, para no escribir en el disco equivocado.
 
@@ -350,6 +357,8 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 | "Parado", pero seguía en marcha | Script lanzado sin administrador que informaba mal | Pararlo a mano y comprobar cada paso, no el mensaje |
 | La integración oficial de Verisure no inicia sesión | Habla con MyPages; las cuentas de España están en OWA | Integración comunitaria Verisure OWA |
 | SMART idéntico en dos discos distintos | El adaptador USB mezclaba los datos con dos discos a la vez | Revisarlos de uno en uno |
+| Mejoras automáticas que bajaban de calidad en cadena | *Completion* con tolerancia 0 % y un perfil que ponía 720p por encima de 1080p HDTV | Perfil reordenado y papelera de 30 días |
+| `:ro` en el socket de Docker no protegía nada | A través del socket se habla con toda la API de Docker | docker-socket-proxy de solo lectura |
 
 ---
 
@@ -359,12 +368,14 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 - [x] **RAM a 16 GB**, discos en su sitio y hardlinks recuperados (31-oct).
 - [x] **Copia cifrada fuera de casa** de las configuraciones (1-nov).
 - [x] **Fotos y archivos** con Immich y Nextcloud (1-nov).
+- [x] **Seguridad, fase 1:** CrowdSec en Caddy y docker-socket-proxy (2-nov).
+- [x] **Primeras copias automáticas**, todas correctas (2-nov).
 - [ ] **Resolver los cortes USB** del disco de copias.
-- [ ] **Comprobar las primeras copias automáticas** de fotos, archivos y la copia cifrada, y hacer una restauración de prueba.
+- [ ] **Restauración de prueba** de la copia cifrada.
+- [ ] **Flecos del 2-nov:** desactivar el reintento automático de descargas fallidas, limpiar un bloqueador sobrante de CrowdSec y revisar el audio de dos episodios importados sin idioma marcado.
 - [ ] **Avisos de seguridad de Jellyfin:** su clave de API da error 401.
 - [ ] **Refresco de los canales de TV en directo**, que está fallando.
 - [ ] **Ampliar el almacenamiento** en el Black Friday, y la copia fuera de casa de fotos y archivos.
-- [ ] **Seguridad, fase 1:** CrowdSec en Caddy y docker-socket-proxy.
 - [ ] **Desinstalar Docker Desktop del PC** tras una semana estable.
 - [ ] **Versionar la configuración en git** (compose, Caddyfile, scripts), sin claves.
 - [ ] **Homarr:** diseño para móvil, calendario y peticiones, e integración con Home Assistant.
@@ -377,9 +388,9 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 
 | Página | Contenido |
 |---|---|
-| [01 · Descarga de ISOs](docs/01-descarga-de-isos.md) | Gestores de biblioteca, indexadores, clientes de descarga, carpetas y Decluttarr |
+| [01 · Descarga de ISOs](docs/01-descarga-de-isos.md) | Gestores de biblioteca, indexadores, clientes de descarga, carpetas, Decluttarr, mejoras automáticas y hardlinks para lo que se comparte |
 | [02 · Reproducción multimedia](docs/02-reproduccion-multimedia.md) | Jellyfin: plugins, tema, compatibilidad con cada aparato, TV en directo y Quick Sync |
-| [03 · Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md) | Caddy, DuckDNS, filtro por país, alertas, contraseñas y plan de seguridad por fases |
+| [03 · Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md) | Caddy, DuckDNS, filtro por país, CrowdSec, socket de Docker en solo lectura, alertas, contraseñas y plan de seguridad por fases |
 | [04 · Subtítulos con Bazarr](docs/04-subtitulos-bazarr.md) | Sincronización automática y script en lote |
 | [05 · Panel principal: Homarr](docs/05-panel-homarr.md) | Despliegue, integraciones, tablero, tema, paneles propios y cómo era antes con Homepage |
 | [06 · Avisos y paneles propios](docs/06-avisos-y-paneles.md) | Servicio en Python: ntfy, página Actividad y paneles de descargas |
@@ -388,7 +399,7 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 | [09 · Acceso privado: Tailscale](docs/09-acceso-privado-tailscale.md) | Todo menos Jellyfin por VPN, scripts y cómo pasó el nombre al servidor |
 | [10 · Domótica: Home Assistant](docs/10-domotica-home-assistant.md) | Alarma de casa con Verisure OWA, limitaciones y seguridad |
 | [11 · DNS: AdGuard Home](docs/11-dns-adguard-home.md) | Despliegue junto al DNS de Ubuntu, DoH, listas y el problema del router del operador |
-| [12 · Copias de seguridad](docs/12-copias-de-seguridad.md) | Copia local, copia cifrada fuera de casa y el disco de copias inestable |
+| [12 · Copias de seguridad](docs/12-copias-de-seguridad.md) | Copia local, copia cifrada fuera de casa, la primera noche completa y el disco de copias inestable |
 | [13 · Fotos y archivos](docs/13-fotos-y-archivos.md) | Immich y Nextcloud: diseño del almacenamiento y copias |
 | [14 · Problemas resueltos](docs/14-problemas-resueltos.md) | Registro de fallos: síntoma, causa y solución |
 | [Registro de cambios](CHANGELOG.md) | Evolución del homelab y cómo era cada parte antes |

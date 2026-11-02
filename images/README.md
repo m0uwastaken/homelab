@@ -20,6 +20,8 @@ Desde una página de `docs/`, la ruta lleva `../` delante, por ejemplo `../image
 | `optiplex-interior.jpg` | El OptiPlex por dentro | README y `docs/08-servidor-nuevo.md` |
 | `immich.png` | Álbumes de Immich | `docs/13-fotos-y-archivos.md` |
 | `jellyfin-login.png` | Inicio de sesión de Jellyfin con los usuarios ocultos | `docs/02-reproduccion-multimedia.md` |
+| `crowdsec-escaneo.png` | Escáner de URLs externo contra mi dominio (dominio tapado) | `docs/03-acceso-remoto-y-seguridad.md` |
+| `crowdsec-alertas.png` | Las alertas de ese escaneo en la consola de CrowdSec | `docs/03-acceso-remoto-y-seguridad.md` |
 
 Pendiente: `actividad.png`.
 

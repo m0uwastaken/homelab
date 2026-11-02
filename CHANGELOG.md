@@ -4,6 +4,21 @@
 
 Cómo ha ido evolucionando el homelab, de lo más reciente a lo más antiguo. Las versiones anteriores de cada parte siguen descritas aquí aunque ya se hayan sustituido.
 
+## 3 de noviembre de 2026: CrowdSec, a prueba
+
+- **Consola web de CrowdSec** (plan gratuito): el servidor inscrito; hizo falta reiniciar CrowdSec para que empezara a sincronizar. Una alerta de prueba con una IP de documentación llegó a la consola.
+- **Tráfico normal:** las visitas desde el móvil con datos se analizaron sin saltar ninguna alerta.
+- **Escáner externo** contra mi propio dominio: 51 rutas en 53 segundos, todas con 403 por el filtro por país, y aun así CrowdSec marcó la IP como maliciosa (5 alertas, 4 decisiones). Más en [Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md#consola-web-y-prueba-con-un-escáner-3-nov).
+
+## 2 de noviembre de 2026: CrowdSec, socket de Docker y una reacción en cadena
+
+- **Primera noche completa de copias, todas correctas:** configuraciones (311 MB, 0 fallos), fotos (8,3 GB sin miniaturas, con el volcado de su base de datos), archivos (867 MB, con el suyo) y la copia cifrada, ya con 2 copias. El disco de copias, sin desconexiones ese día. Más en [Copias de seguridad](docs/12-copias-de-seguridad.md#la-primera-noche-completa-2-nov).
+- **CrowdSec:** Caddy escribe sus accesos en JSON (rotando a 20 MB × 5); CrowdSec 1.8.2 los analiza junto con los registros de Jellyfin, y Caddy se recompila con el módulo de CrowdSec, con versiones fijadas (2.11.7 y v0.14.1). Si CrowdSec se cae, el tráfico sigue pasando. Probado con una IP bloqueada a propósito (403) y desbloqueada (200). Añadido a Homarr. Más en [Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md#crowdsec-bloqueo-automático-2-nov).
+- **docker-socket-proxy:** Beszel deja de montar el socket de Docker y pasa a leer a través de un proxy local que solo permite consultas; crear, reiniciar, borrar o ejecutar devuelve 403.
+- **Una reacción en cadena en las descargas:** al activar las mejoras automáticas, *Completion* (tolerancia 0 %) rechazaba cada descarga y el gestor de series bajaba de calidad en cada intento: 17 rechazos en ~15 minutos. Perfil reordenado para no bajar nunca de 1080p a 720p y papelera de 30 días activada. No se perdió nada. Más en [Descarga de ISOs](docs/01-descarga-de-isos.md#mejoras-automáticas-una-reacción-en-cadena-2-nov).
+- **Importación manual con hardlinks** de 12 episodios que el gestor de series no veía, y tres episodios sin audio en castellano sustituidos (los antiguos, 30 días en la papelera).
+- **8 torrents (125 GB) protegidos:** sacados de la biblioteca con un script que deja un hardlink en su sitio y comprueba inodo y tamaño antes de enlazar. 0 bytes extra.
+
 ## 1 de noviembre de 2026: Copias fuera de casa, fotos y archivos
 
 - **Copia cifrada fuera de casa** de las configuraciones con restic y rclone: cada noche, 7 diarias y 4 semanales, verificación de una muestra del 5 % los domingos y acceso a la nube limitado a sus propios archivos. Autorizada a mano con `curl` (el servidor no tiene navegador). Más en [Copias de seguridad](docs/12-copias-de-seguridad.md).

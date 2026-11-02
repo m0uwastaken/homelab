@@ -43,7 +43,7 @@ flowchart LR
 
 El hub y el agente de Docker hablan por un **socket Unix en un volumen compartido**, sin abrir ningún puerto de red entre ellos. El agente necesita el socket de Docker para ver los contenedores.
 
-> **Corrección:** al principio di por hecho que montar `docker.sock` con `:ro` lo dejaba en "solo lectura". No es así: `:ro` solo impide modificar el archivo del socket, pero a través de él se puede hablar con toda la API de Docker. La protección real es poner delante un **docker-socket-proxy** que solo deje pasar las consultas de lectura que necesita Beszel; está en el [plan de seguridad](03-acceso-remoto-y-seguridad.md#plan-de-seguridad-por-fases).
+> **Corrección:** al principio di por hecho que montar `docker.sock` con `:ro` lo dejaba en "solo lectura". No es así: `:ro` solo impide modificar el archivo del socket, pero a través de él se puede hablar con toda la API de Docker. La protección real es poner delante un **docker-socket-proxy** que solo deje pasar las consultas de lectura que necesita Beszel. **Hecho el 2-nov:** ver [El socket de Docker, en solo lectura](03-acceso-remoto-y-seguridad.md#el-socket-de-docker-en-solo-lectura-2-nov).
 
 ```yaml
   beszel:
@@ -120,6 +120,6 @@ Se mudó con el kit, conservando el historial:
 - **El PC deja de ser `host.docker.internal`:** el agente de Windows ahora está en otra máquina, así que el PC tiene una IP fija en el router y una regla en el firewall de Windows que solo deja entrar al servidor en el puerto del agente (45876).
 - **Widgets de Homarr vacíos:** el usuario de solo lectura de Homarr solo ve los sistemas que se le comparten expresamente en Beszel.
 - **El disco de copias, por identificador (1-nov):** va por USB y, tras una desconexión, vuelve con otro nombre de dispositivo (`/dev/sdX`). Beszel lo vigila por su identificador estable, que no cambia. Ver [Copias de seguridad](12-copias-de-seguridad.md#el-disco-de-copias-inestable-y-vigilado).
-- Pendiente: poner un **docker-socket-proxy** delante del socket de Docker.
+- **Sin el socket de Docker (2-nov):** el agente ya no monta `docker.sock`. Consulta un **docker-socket-proxy** que solo escucha en el propio servidor y solo permite leer (contenedores, estadísticas, información, versión y logs); crear, reiniciar, borrar o ejecutar devuelve 403. Beszel sigue viendo cada contenedor igual que antes. Ver [Seguridad](03-acceso-remoto-y-seguridad.md#el-socket-de-docker-en-solo-lectura-2-nov).
 
 **Uso actual (2-nov):** 29 contenedores con 4,6 GiB de RAM en uso de 14,9 GiB disponibles.

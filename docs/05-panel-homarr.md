@@ -72,6 +72,7 @@ Las **integraciones** apuntan a los servicios por su **nombre de contenedor** (`
 | Beszel | CPU, RAM, discos y estado de cada máquina |
 | AdGuard Home | Consultas DNS y porcentaje bloqueado (widget DNS Hole), desde el 31-oct |
 | Immich y Nextcloud | En la lista de apps con su punto de estado, desde el 1-nov |
+| CrowdSec | Punto de estado contra su API interna, desde el 2-nov. Ver [CrowdSec](03-acceso-remoto-y-seguridad.md#crowdsec-bloqueo-automático-2-nov) |
 | Home Assistant | Estado de la alarma y del sensor de ambiente (en marcha) |
 
 **Detalle de seguridad:** Beszel se conecta con un **usuario propio de solo lectura** (en Beszel el inicio de sesión es con el correo, no con el nombre de usuario), para que Homarr no use la cuenta de administrador. Las claves de API salen del mismo `.env` que usan los demás servicios, nunca del compose.

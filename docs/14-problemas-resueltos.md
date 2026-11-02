@@ -138,6 +138,33 @@ Registro de fallos que han ido apareciendo, con su causa real y cómo se resolvi
 - **Causa:** el plugin Home Screen Sections (que además daba error en el servidor).
 - **Solución:** retirarlo. Ver [Reproducción multimedia](02-reproduccion-multimedia.md#la-tele-lg-que-dejó-de-cargar-1-nov).
 
+## Afinar el servidor (2–3 nov)
+
+### Mejoras automáticas que bajaban de calidad en cadena
+- **Síntoma:** 17 versiones rechazadas en unos 15 minutos, cada una de peor calidad que la anterior.
+- **Causa:** la extensión *Completion* de NZBGet, con tolerancia 0 %, rechazaba cada descarga y el gestor de series pasaba a la siguiente opción. Además, el perfil ponía 720p por encima de 1080p HDTV y la papelera estaba desactivada.
+- **Solución:** cruzar los historiales de NZBGet, el gestor de series y Prowlarr para verlo entero; perfil reordenado y papelera de 30 días. No se perdió nada. Pendiente: desactivar el reintento automático. Ver [Descarga de ISOs](01-descarga-de-isos.md#mejoras-automáticas-una-reacción-en-cadena-2-nov).
+
+### Descargas que el gestor de series no veía
+- **Causa:** estaban en una categoría de qBittorrent que el gestor no sigue.
+- **Solución:** importarlas a mano con hardlinks: 12 episodios, 0 bytes extra y los torrents siguen compartiéndose.
+
+### Archivos compartidos que una mejora podía borrar
+- **Causa:** 8 torrents (125 GB) se compartían desde dentro de la biblioteca, sin otra copia.
+- **Solución:** un script que los traslada fuera desde qBittorrent y deja un hardlink en la biblioteca, comprobando inodo y tamaño antes de enlazar. Ver [Descarga de ISOs](01-descarga-de-isos.md#proteger-lo-que-se-está-compartiendo-2-nov).
+
+### `:ro` en el socket de Docker no lo protege
+- **Causa:** `:ro` solo impide modificar el archivo del socket; a través de él se habla con toda la API de Docker.
+- **Solución:** un docker-socket-proxy que solo deja leer; lo demás, 403. Ver [Seguridad](03-acceso-remoto-y-seguridad.md#el-socket-de-docker-en-solo-lectura-2-nov).
+
+### La consola de CrowdSec no recibía nada
+- **Causa:** tras inscribir el servidor, CrowdSec necesita reiniciarse para empezar a sincronizar.
+- **Solución:** reiniciarlo y comprobarlo con una alerta de prueba usando una IP de documentación.
+
+### Un bloqueador de CrowdSec de más (pendiente)
+- **Causa:** el nombre de una variable hizo que se registrara un segundo bloqueador.
+- **Solución:** no tiene efecto; queda apuntado para borrarlo.
+
 ## DNS
 
 ### El router del operador no deja repartir AdGuard

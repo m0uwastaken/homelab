@@ -27,7 +27,7 @@ flowchart LR
 
 - **Los datos** (fotos y archivos) van al disco grande.
 - **Las bases de datos y los modelos de aprendizaje automático** de Immich van al **SSD**, porque es donde importa la velocidad, y **fuera de los volúmenes de Docker**. Así la copia diaria de configuraciones, que recoge todos los volúmenes, no se infla con varios GB que se pueden regenerar o que ya tienen su propia copia.
-- **Copias:** scripts diarios al disco de copias con los volcados de las bases de datos y 30 días de retención para lo borrado. La primera copia de fotos (2,1 GB) salió bien. Ver [Copias de seguridad](12-copias-de-seguridad.md).
+- **Copias:** scripts diarios al disco de copias con los volcados de las bases de datos y 30 días de retención para lo borrado. La primera copia de fotos (2,1 GB) salió bien, y la primera automática de la noche (2-nov) copió 8,3 GB sin miniaturas, más el volcado de la base de datos. Ver [Copias de seguridad](12-copias-de-seguridad.md#la-primera-noche-completa-2-nov).
 - **Seguridad de las copias:** si el disco de copias no está montado, los scripts no se ejecutan, para no escribir en el disco equivocado.
 
 ## Decisiones

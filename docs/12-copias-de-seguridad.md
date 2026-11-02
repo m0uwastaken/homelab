@@ -28,10 +28,22 @@ flowchart LR
 
 ## Copia en casa
 
-- **Configuraciones y volúmenes:** cada día a las 04:30, unos **308 MB**, conservando **14 días**. Recoge sola los volúmenes de cualquier servicio nuevo del proyecto.
+- **Configuraciones y volúmenes:** cada día a las 04:30, unos **310 MB**, conservando **14 días**. Recoge sola los volúmenes de cualquier servicio nuevo del proyecto.
 - **Al estrenar el disco de copias,** la copia que había en el disco de datos se movió al disco nuevo comprobando con `diff` que era idéntica antes de borrar la original.
 - **Primera ejecución automática** sobre el disco nuevo (1-nov): correcta, sin fallos.
 - **Fotos y archivos:** scripts diarios con los volcados de sus bases de datos y 30 días de retención para lo borrado. La primera copia de fotos (2,1 GB) salió bien.
+
+### La primera noche completa (2-nov)
+
+La primera noche con todas las copias automáticas en marcha, todo salió bien:
+
+| Copia | Resultado |
+|---|---|
+| Configuraciones → disco de copias | 311 MB, 0 fallos |
+| Fotos → disco de copias | 8,3 GB (sin miniaturas, que Immich puede regenerar), con el volcado diario de su base de datos (40 MB) |
+| Archivos → disco de copias | 867 MB, con el volcado de su base de datos |
+| Copia cifrada en la nube | Correcta, ya con 2 copias guardadas |
+| Disco de copias | Ninguna desconexión ese día, después de las dos del anterior |
 
 ## Copia cifrada fuera de casa
 
@@ -73,6 +85,6 @@ Medidas tomadas:
 ## Pendiente
 
 - [ ] Resolver los cortes USB del disco de copias.
-- [ ] Comprobar las primeras copias automáticas de fotos, de archivos y de la copia cifrada.
+- [x] Comprobar las primeras copias automáticas de fotos, de archivos y de la copia cifrada (2-nov: [todas correctas](#la-primera-noche-completa-2-nov)).
 - [ ] Copia fuera de casa de fotos y archivos (con un NAS o ampliando la copia cifrada).
 - [ ] Hacer una **restauración de prueba** de la copia cifrada: una copia solo vale si se ha comprobado que se puede recuperar.
