@@ -18,6 +18,10 @@
 
 Documentación de mi homelab: un servidor en casa, montado en buena parte con hardware reciclado.
 
+<p align="center"><a href="docs/05-panel-homarr.md"><img src="images/homarr-escritorio.png" alt="Tablero de Homarr: el panel central del homelab"></a></p>
+
+<p align="center"><b>El panel central del homelab, en Homarr.</b> Las dos máquinas, los bloqueos de CrowdSec, las descargas en directo, las notificaciones, las gráficas del servidor y todas las apps con su punto de estado, en una sola pantalla.<br><sub>Las alertas de seguridad son de mis propias pruebas con escáneres web. Los nombres de proveedores, indexadores y descargas están tapados.</sub></p>
+
 ## Por qué lo monté
 
 Estaba harto de que Gmail y Google Drive me avisaran cada dos por tres de que me quedaba sin almacenamiento, y de que HBO Max me metiera anuncios en mitad de las series. Además, tenía varios discos duros de ordenadores antiguos cogiendo polvo y quería darles una segunda vida.
@@ -242,9 +246,17 @@ Bazarr descarga los subtítulos y los **sincroniza solos** con ffsubsync, usando
 
 ## Panel: Homarr
 
-![Tablero de Homarr](images/homarr-escritorio.png)
+Es la página de inicio de mi navegador y la [captura de arriba del todo](#mi-homelab). De un vistazo:
 
-*Las alertas de seguridad de la captura son de mis propias pruebas con escáneres web. Los nombres de proveedores, indexadores y descargas están tapados.*
+| Zona | Qué enseña |
+|---|---|
+| Columna izquierda | Todas las apps por categorías, cada una con su punto de estado |
+| Máquinas | PC y servidor con Beszel: CPU, memoria, disco, temperatura y tiempo encendido |
+| Seguridad | Panel de CrowdSec: alertas de 24 h y 7 días, IPs bloqueadas ahora y últimas alertas en castellano |
+| Descargas | Paneles propios de BitTorrent y Usenet, refrescados cada 3 s |
+| Notificaciones | Lo mismo que llega al móvil por ntfy |
+| Gráficas | CPU, memoria, disco, red y uso por contenedor del servidor |
+| Jellyfin | Quién está viendo algo y en qué aparato |
 
 Desde el 26 de octubre, **Homarr v2** es la página de inicio del homelab, y desde el 31 el único panel: **Homepage**, que se configuraba con archivos YAML, quedó retirado tras la mudanza. Homarr se configura desde la propia web, guarda las credenciales cifradas y permite un diseño distinto para PC y para móvil.
 
