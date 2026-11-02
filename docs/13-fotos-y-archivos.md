@@ -9,6 +9,8 @@ Desde el **1 de noviembre de 2026**, el homelab guarda también lo personal: **f
 | **Immich** | 3.3.5 | Alternativa a Google Fotos: subida automática desde el móvil, línea de tiempo, búsqueda | 4 |
 | **Nextcloud** | 34.0.5 | Alternativa a Google Drive: archivos, carpetas compartidas, sincronización | Nextcloud, PostgreSQL y Redis, con las tareas de fondo por cron |
 
+![Immich: álbumes y espacio usado en el disco de datos](../images/immich.png)
+
 ## Diseño del almacenamiento
 
 ```mermaid

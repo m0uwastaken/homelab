@@ -18,10 +18,12 @@ Desde una página de `docs/`, la ruta lleva `../` delante, por ejemplo `../image
 | `ntfy-movil.png` | Avisos en el móvil | `docs/12-copias-de-seguridad.md` |
 | `nzbget-velocidad.png` | NZBGet a 771 Mb/s en el servidor | `docs/08-servidor-nuevo.md` |
 | `optiplex-interior.jpg` | El OptiPlex por dentro | README y `docs/08-servidor-nuevo.md` |
+| `immich.png` | Álbumes de Immich | `docs/13-fotos-y-archivos.md` |
+| `jellyfin-login.png` | Inicio de sesión de Jellyfin con los usuarios ocultos | `docs/02-reproduccion-multimedia.md` |
 
-Pendientes: `jellyfin-inicio.png` (sin títulos ni usuario a la vista) y `actividad.png`.
+Pendiente: `actividad.png`.
 
-**No subir nunca:** capturas de Home Assistant con la alarma, fotos de las cámaras, el historial de la alarma ni fotos o archivos personales de Immich y Nextcloud. Describen la seguridad física de la casa.
+**No subir nunca:** capturas de Home Assistant con la alarma, fotos de las cámaras, el historial de la alarma ni fotos o archivos personales que no quieras enseñar. Lo de la alarma describe la seguridad física de la casa.
 
 **Antes de subir una captura, tapa o difumina:**
 

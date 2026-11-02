@@ -4,7 +4,9 @@
 
 Jellyfin 12.2 (imagen de LinuxServer). La idea era que se pareciera a una plataforma de streaming y que se pudieran saltar las intros, sin romper nada en las teles.
 
-<!-- 📸 Captura de la pantalla de inicio con el carrusel: images/jellyfin-inicio.png -->
+![Inicio de sesión de Jellyfin, con los usuarios ocultos](../images/jellyfin-login.png)
+
+Los usuarios no aparecen en la pantalla de inicio de sesión: hay que escribir el nombre (ver [Seguridad](03-acceso-remoto-y-seguridad.md#jellyfin)).
 
 ## Plugins
 
