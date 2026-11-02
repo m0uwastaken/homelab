@@ -1,4 +1,4 @@
-# 🧭 Panel principal: Homarr
+# Panel principal: Homarr
 
 [← Volver al README](../README.md)
 

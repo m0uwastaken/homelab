@@ -1,4 +1,4 @@
-# 🏡 Domótica: Home Assistant y la alarma de casa
+# Domótica: Home Assistant y la alarma de casa
 
 [← Volver al README](../README.md)
 

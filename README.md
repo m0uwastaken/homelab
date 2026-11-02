@@ -1,4 +1,4 @@
-# 🏠 Mi Homelab
+# Mi Homelab
 
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
 ![Ubuntu Server](https://img.shields.io/badge/Ubuntu_Server-26.04.1_LTS-E95420?logo=ubuntu&logoColor=white)
@@ -15,20 +15,25 @@
 ![Python](https://img.shields.io/badge/Python-stdlib-3776AB?logo=python&logoColor=white)
 ![PowerShell](https://img.shields.io/badge/PowerShell-scripts-5391FE?logo=powershell&logoColor=white)
 
-Documentación de mi laboratorio doméstico: un servidor autoalojado con **descarga de ISOs automatizada**, **reproducción multimedia** en las teles de casa (y, de forma segura, también fuera de ella), un **panel central**, **monitorización** de recursos, **acceso privado por VPN**, **DNS con bloqueo de anuncios**, **domótica** con la alarma de casa integrada, **fotos y archivos propios** y **copias de seguridad** dentro y fuera de casa.
+Documentación de mi homelab: un servidor en casa, montado en buena parte con hardware reciclado.
 
-Empezó como una prueba en **Docker Desktop sobre mi PC con Windows** y desde el **31 de octubre de 2026** corre en un **servidor dedicado**: un Dell OptiPlex 7060 SFF de segunda mano con Ubuntu Server. La idea es ir mejorándolo poco a poco, empezando por lo básico.
+## Por qué lo monté
 
+Estaba harto de que Gmail y Google Drive me avisaran cada dos por tres de que me quedaba sin almacenamiento, y de que HBO Max me metiera anuncios en mitad de las series. Además, tenía varios discos duros de ordenadores antiguos cogiendo polvo y quería darles una segunda vida.
 
-## 📌 Estado
+Así que monté mi propio servidor: mis fotos y archivos en casa, mi biblioteca multimedia sin anuncios y, de paso, un sitio donde aprender Linux, Docker, redes y seguridad. Hoy tiene descarga de ISOs automatizada, reproducción multimedia en las teles de casa (y, de forma segura, también fuera), un panel central, monitorización, acceso privado por VPN, DNS con bloqueo de anuncios, domótica con la alarma de casa integrada, fotos y archivos propios y copias de seguridad dentro y fuera de casa.
+
+Empezó como una prueba en Docker Desktop sobre mi PC con Windows y desde el 31 de octubre de 2026 corre en un servidor dedicado: un Dell OptiPlex 7060 SFF de segunda mano con Ubuntu Server y los discos que tenía por casa. La idea es ir mejorándolo poco a poco.
+
+## Estado
 
 | Fase | Qué | Estado |
 |---|---|---|
 | 0 | Servicios en Docker Desktop (Windows) | ✅ Cumplió su papel; retirada el 30-oct |
 | 1 | Servidor dedicado: OptiPlex + Ubuntu Server + Docker | ✅ En marcha desde el 31-oct: discos en su sitio, RAM ampliada a 16 GB y 29 contenedores |
-| 2 | NAS, archivos personales y más servicios | 💭 Idea |
+| 2 | NAS, archivos personales y más servicios | Idea |
 
-## ⚡ Menos hardware, más rendimiento
+## Menos hardware, más rendimiento
 
 Sobre el papel, la mudanza fue un *downgrade*: de un Ryzen 5 5600 con 16 GB a un i5-8500 de 2018 con 8 GB. En la práctica, **el homelab rinde mucho mejor y aprovecha cada recurso**, porque el límite nunca fue el procesador, sino la capa de Docker Desktop, un disco SMR y compartir máquina con mi uso diario.
 
@@ -40,11 +45,11 @@ Sobre el papel, la mudanza fue un *downgrade*: de un Ryzen 5 5600 con 16 GB a un
 | Disponibilidad | Mientras el PC estuviera encendido | 24/7, en una máquina dedicada |
 | Recursos | 21 contenedores con el PC al 83 % de RAM | 21 contenedores cabían en 8 GB; hoy **29 contenedores usan solo 4,6 GiB** de los 16 GB a los que amplié la RAM |
 
-> 💤 **Y lo mejor no sale en la tabla:** después de una semana con mi ordenador personal encendido día y noche, sufriendo con todos los contenedores a cuestas, por fin lo puedo apagar.
+> **Y lo mejor no sale en la tabla:** después de una semana con mi ordenador personal encendido día y noche, sufriendo con todos los contenedores a cuestas, por fin lo puedo apagar.
 
-Los porqués, la prueba previa y cómo fue la mudanza: → [Servidor](docs/08-servidor-nuevo.md#por-qué-no-es-un-paso-atrás)
+Los porqués, la prueba previa y cómo fue la mudanza: más en [Servidor](docs/08-servidor-nuevo.md#por-qué-no-es-un-paso-atrás).
 
-### 🆕 Novedades (31 de octubre – 2 de noviembre de 2026)
+### Novedades (31 de octubre – 2 de noviembre de 2026)
 
 - **[Servidor asentado](docs/08-servidor-nuevo.md#después-de-la-mudanza-asentar-el-servidor-31-oct):** RAM ampliada a 16 GB y probada, discos en su sitio definitivo, el conflicto de IP de Caddy resuelto y **46,4 GiB recuperados** al volver a unir los hardlinks que perdió la copia.
 - **[Copias de seguridad](docs/12-copias-de-seguridad.md):** copia diaria en casa y **copia cifrada fuera de casa** con restic, con acceso mínimo a la nube. Y un disco de copias inestable por USB, ahora vigilado con avisos al móvil.
@@ -58,30 +63,30 @@ El historial completo, con cómo era cada parte antes, está en el [registro de 
 
 _Última actualización: 2 de noviembre de 2026._
 
-## 📖 Índice
+## Índice
 
-- [Arquitectura](#-arquitectura)
+- [Arquitectura](#arquitectura)
   - [Red](#red)
   - [Flujo de una petición](#flujo-de-una-petición)
   - [Acceso desde fuera de casa: dos puertas](#acceso-desde-fuera-de-casa-dos-puertas)
-- [Hardware](#-hardware)
-- [Servicios](#-servicios)
-- [Panel: Homarr](#-panel-homarr)
-- [Monitorización: Beszel](#-monitorización-beszel)
-- [Avisos y paneles propios](#-avisos-y-paneles-propios)
-- [Acceso privado: Tailscale](#-acceso-privado-tailscale)
-- [DNS: AdGuard Home](#-dns-adguard-home)
-- [Fotos y archivos](#-fotos-y-archivos)
-- [Domótica: Home Assistant](#-domótica-home-assistant)
-- [Seguridad](#-seguridad)
-- [Copias de seguridad](#-copias-de-seguridad)
-- [Problemas resueltos](#-problemas-resueltos)
-- [Próximos pasos](#-próximos-pasos)
-- [Documentación detallada](#-documentación-detallada)
+- [Hardware](#hardware)
+- [Servicios](#servicios)
+- [Panel: Homarr](#panel-homarr)
+- [Monitorización: Beszel](#monitorización-beszel)
+- [Avisos y paneles propios](#avisos-y-paneles-propios)
+- [Acceso privado: Tailscale](#acceso-privado-tailscale)
+- [DNS: AdGuard Home](#dns-adguard-home)
+- [Fotos y archivos](#fotos-y-archivos)
+- [Domótica: Home Assistant](#domótica-home-assistant)
+- [Seguridad](#seguridad)
+- [Copias de seguridad](#copias-de-seguridad)
+- [Problemas resueltos](#problemas-resueltos)
+- [Próximos pasos](#próximos-pasos)
+- [Documentación detallada](#documentación-detallada)
 
 ---
 
-## 🧭 Arquitectura
+## Arquitectura
 
 ### Red
 
@@ -148,7 +153,7 @@ Más detalle en [Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md
 
 ---
 
-## 💻 Hardware
+## Hardware
 
 ### Servidor (desde el 31-oct)
 
@@ -188,7 +193,7 @@ Antes de usarlos, revisé la salud de los tres discos con SMART y repartí los p
 
 ---
 
-## 🧩 Servicios
+## Servicios
 
 Todo corre en contenedores con Docker Compose, salvo Tailscale, que va instalado en el sistema. Lo que pone "Casa" se usa también desde fuera **por Tailscale**.
 
@@ -206,9 +211,9 @@ Todo corre en contenedores con Docker Compose, salvo Tailscale, que va instalado
 | | **Beszel** | Monitorización de recursos y alertas, del servidor y del PC | Casa |
 | | **avisos** (propio) | Notificaciones por ntfy, página "Actividad" y paneles de descargas | Casa |
 | Red | **AdGuard Home** | DNS con bloqueo de anuncios y rastreadores, DoH hacia fuera | Casa |
-| Personal | **Immich** 🆕 | Fotos, con subida automática desde el móvil | Solo Tailscale |
-| | **Nextcloud** 🆕 | Archivos | Solo Tailscale |
-| Copias | **restic + rclone** 🆕 | Copia cifrada fuera de casa | — |
+| Personal | **Immich** | Fotos, con subida automática desde el móvil | Solo Tailscale |
+| | **Nextcloud** | Archivos | Solo Tailscale |
+| Copias | **restic + rclone** | Copia cifrada fuera de casa | — |
 | Domótica | **Home Assistant** | Alarma de casa (estado, armado, fotos, historial) | Casa, nunca publicado |
 | Acceso remoto | **Caddy** | Proxy inverso con HTTPS automático; publica solo Jellyfin | Internet (443) |
 | | **DuckDNS** | Mantiene el dominio apuntando a la IP de casa | Solo interno |
@@ -218,15 +223,15 @@ Todo corre en contenedores con Docker Compose, salvo Tailscale, que va instalado
 
 <!-- 📸 Captura de la pantalla de inicio con el tema: images/jellyfin-inicio.png -->
 
-Jellyfin con aspecto de plataforma de streaming: carrusel de portada (**Media Bar**), etiquetas de calidad e idioma en los pósters (**Jellyfin Enhanced**), botón para **saltar intros y créditos** (**Intro Skipper**) y el tema **Jellyfish**. Antes de activarlo en todas partes comprobé qué funciona en cada aparato, incluida una tele LG antigua (a la que hubo que quitarle un plugin el 1-nov). Tiene también **TV en directo** con guía de programación y, desde la mudanza, **transcodificación por hardware con Quick Sync**. → [Reproducción multimedia](docs/02-reproduccion-multimedia.md)
+Jellyfin con aspecto de plataforma de streaming: carrusel de portada (**Media Bar**), etiquetas de calidad e idioma en los pósters (**Jellyfin Enhanced**), botón para **saltar intros y créditos** (**Intro Skipper**) y el tema **Jellyfish**. Antes de activarlo en todas partes comprobé qué funciona en cada aparato, incluida una tele LG antigua (a la que hubo que quitarle un plugin el 1-nov). Tiene también **TV en directo** con guía de programación y, desde la mudanza, **transcodificación por hardware con Quick Sync**. Más en [Reproducción multimedia](docs/02-reproduccion-multimedia.md).
 
 ### Subtítulos
 
-Bazarr descarga los subtítulos y los **sincroniza solos** con ffsubsync, usando como referencia los subtítulos incrustados del vídeo o el audio. Un script en PowerShell aplica los ajustes y resincroniza en lote los que ya había, guardando una copia de los originales. → [Subtítulos con Bazarr](docs/04-subtitulos-bazarr.md)
+Bazarr descarga los subtítulos y los **sincroniza solos** con ffsubsync, usando como referencia los subtítulos incrustados del vídeo o el audio. Un script en PowerShell aplica los ajustes y resincroniza en lote los que ya había, guardando una copia de los originales. Más en [Subtítulos con Bazarr](docs/04-subtitulos-bazarr.md).
 
 ---
 
-## 🧭 Panel: Homarr
+## Panel: Homarr
 
 <!-- 📸 Captura del tablero de Homarr: images/homarr-escritorio.png -->
 
@@ -247,17 +252,17 @@ flowchart LR
     H -->|"iFrame ?embed=1"| AV["avisos :3001<br/>paneles propios"]
 ```
 
-Despliegue, integraciones, diseño del tablero, CSS, paneles propios y lo que aprendí por el camino: → [Panel principal: Homarr](docs/05-panel-homarr.md)
+Despliegue, integraciones, diseño del tablero, CSS, paneles propios y lo que aprendí por el camino: más en [Panel principal: Homarr](docs/05-panel-homarr.md).
 
-## 📈 Monitorización: Beszel
+## Monitorización: Beszel
 
-**Beszel** mide CPU, RAM, red, temperatura, discos (con **SMART**) y **cada contenedor por separado**, guarda historial y avisa al móvil por ntfy. Se mudó al servidor con su historial: ahora vigila el **servidor** con su propio agente y el **PC** con un agente nativo de Windows, que solo acepta conexiones del servidor. → [Monitorización: Beszel](docs/07-monitorizacion-beszel.md)
+**Beszel** mide CPU, RAM, red, temperatura, discos (con **SMART**) y **cada contenedor por separado**, guarda historial y avisa al móvil por ntfy. Se mudó al servidor con su historial: ahora vigila el **servidor** con su propio agente y el **PC** con un agente nativo de Windows, que solo acepta conexiones del servidor. Más en [Monitorización: Beszel](docs/07-monitorizacion-beszel.md).
 
-## 🔔 Avisos y paneles propios
+## Avisos y paneles propios
 
-Un servicio **en Python sin dependencias** envía notificaciones al móvil por **ntfy** (lo añadido, lo fallido y alertas de seguridad de Jellyfin), sirve una página **"Actividad"** con el motivo de cada fallo explicado en castellano y genera los **paneles de descargas** de Homarr. → [Avisos y paneles propios](docs/06-avisos-y-paneles.md)
+Un servicio **en Python sin dependencias** envía notificaciones al móvil por **ntfy** (lo añadido, lo fallido y alertas de seguridad de Jellyfin), sirve una página **"Actividad"** con el motivo de cada fallo explicado en castellano y genera los **paneles de descargas** de Homarr. Más en [Avisos y paneles propios](docs/06-avisos-y-paneles.md).
 
-## 🔒 Acceso privado: Tailscale
+## Acceso privado: Tailscale
 
 Desde el 29 de octubre, todo menos Jellyfin se usa desde fuera de casa por **Tailscale**:
 
@@ -265,21 +270,21 @@ Desde el 29 de octubre, todo menos Jellyfin se usa desde fuera de casa por **Tai
 - **Mudanza transparente:** el PC pasó a llamarse `pc` y el servidor tomó el nombre `homelab`, así que **ningún enlace cambió**. En el servidor, además, **Tailscale SSH**.
 - **Cortafuegos** que solo admite el rango de Tailscale para el acceso remoto.
 
-→ [Acceso privado: Tailscale](docs/09-acceso-privado-tailscale.md)
+Más en [Acceso privado: Tailscale](docs/09-acceso-privado-tailscale.md).
 
-## 🛡 DNS: AdGuard Home
+## DNS: AdGuard Home
 
-Desde el 31 de octubre, el servidor es también el **DNS** de mis aparatos: bloquea anuncios, rastreadores y dominios maliciosos con la lista **HaGeZi Pro** y resuelve hacia fuera **cifrado** (DoH con Quad9 y Cloudflare). Escucha solo en la IP de casa del servidor, para convivir con el DNS del propio Ubuntu y con Tailscale. El router del operador no permite repartirlo por DHCP, así que de momento se configura aparato por aparato; para toda la casa hará falta un router propio. → [DNS: AdGuard Home](docs/11-dns-adguard-home.md)
+Desde el 31 de octubre, el servidor es también el **DNS** de mis aparatos: bloquea anuncios, rastreadores y dominios maliciosos con la lista **HaGeZi Pro** y resuelve hacia fuera **cifrado** (DoH con Quad9 y Cloudflare). Escucha solo en la IP de casa del servidor, para convivir con el DNS del propio Ubuntu y con Tailscale. El router del operador no permite repartirlo por DHCP, así que de momento se configura aparato por aparato; para toda la casa hará falta un router propio. Más en [DNS: AdGuard Home](docs/11-dns-adguard-home.md).
 
-## 🏡 Domótica: Home Assistant
+## Domótica: Home Assistant
 
 **Home Assistant** integra la **alarma de casa** (Verisure / Securitas Direct) con la integración comunitaria **Verisure OWA** (HACS), porque la oficial habla con otra plataforma que no sirve en España: armar y desarmar, fotos de las cámaras bajo demanda, temperatura y humedad, e historial de quién hizo qué. En el servidor va en la red del host, para poder descubrir los aparatos de casa.
 
-Como desde ahí se puede desarmar la alarma, lo trato como la propia alarma: **usuario de Verisure propio** para Home Assistant, contraseña única y **verificación en dos pasos**, y **nunca publicado en internet**, solo por Tailscale. → [Domótica: Home Assistant](docs/10-domotica-home-assistant.md)
+Como desde ahí se puede desarmar la alarma, lo trato como la propia alarma: **usuario de Verisure propio** para Home Assistant, contraseña única y **verificación en dos pasos**, y **nunca publicado en internet**, solo por Tailscale. Más en [Domótica: Home Assistant](docs/10-domotica-home-assistant.md).
 
 ---
 
-## 🔐 Seguridad
+## Seguridad
 
 - **Solo Jellyfin está expuesto.** El resto de servicios solo es accesible desde casa o por **Tailscale**, sin abrir más puertos.
 - **Caddy** como única puerta de entrada: HTTPS automático, solo conexiones desde **España** (4.326 rangos de IP, actualizados cada mes), rutas de administración de Jellyfin bloqueadas desde fuera, rutas típicas de bots (`.php`, `/wp-admin`, `/.env`…) cortadas con 404 y cabeceras de seguridad (HSTS, `nosniff`). En el servidor, Caddy ya ve la IP real de cada visita.
@@ -290,25 +295,25 @@ Como desde ahí se puede desarmar la alarma, lo trato como la propia alarma: **u
 - **Fotos y archivos solo por Tailscale**, y **copia cifrada fuera de casa** con acceso mínimo a la nube.
 - **Claude Code en el servidor** sin permiso para leer los archivos de secretos, y sus comandos revisados antes de aprobarlos.
 - **Home Assistant** con 2FA y nunca publicado, porque desde él se puede desarmar la alarma.
-- **Plan de seguridad por fases:** pendientes CrowdSec y docker-socket-proxy y, más adelante, una red separada para IoT, cámaras e invitados. → [Plan](docs/03-acceso-remoto-y-seguridad.md#plan-de-seguridad-por-fases)
+- **Plan de seguridad por fases:** pendientes CrowdSec y docker-socket-proxy y, más adelante, una red separada para IoT, cámaras e invitados. Más en [Plan](docs/03-acceso-remoto-y-seguridad.md#plan-de-seguridad-por-fases).
 - **Secretos fuera del compose**, en archivos `.env`. Homarr guarda las credenciales de sus integraciones **cifradas**, y tanto Homarr como Beszel usan **usuarios de solo lectura** donde es posible.
 
-> **Lo que descubrí:** con Caddy dentro de Docker en Windows, todo lo que llegaba de internet parecía venir de la red de casa, y Jellyfin permite algunas acciones (como reiniciar o apagar el servidor) a cualquiera que esté "en casa". Lo corregí bloqueando esas rutas en Caddy, definiendo bien las redes de Jellyfin y, después, sacando Caddy de Docker para ver la IP real. En el servidor nuevo, Linux conserva la IP real y Caddy ha vuelto a su contenedor. → [Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md)
+> **Lo que descubrí:** con Caddy dentro de Docker en Windows, todo lo que llegaba de internet parecía venir de la red de casa, y Jellyfin permite algunas acciones (como reiniciar o apagar el servidor) a cualquiera que esté "en casa". Lo corregí bloqueando esas rutas en Caddy, definiendo bien las redes de Jellyfin y, después, sacando Caddy de Docker para ver la IP real. En el servidor nuevo, Linux conserva la IP real y Caddy ha vuelto a su contenedor. Más en [Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md).
 
 ---
 
-## 🖼 Fotos y archivos
+## Fotos y archivos
 
-Desde el 1 de noviembre, **Immich** (fotos, con subida automática desde el móvil) y **Nextcloud** (archivos), los dos **solo por Tailscale**. Los datos van al disco grande y las bases de datos al SSD, fuera de los volúmenes de Docker para no inflar la copia diaria. → [Fotos y archivos](docs/13-fotos-y-archivos.md)
+Desde el 1 de noviembre, **Immich** (fotos, con subida automática desde el móvil) y **Nextcloud** (archivos), los dos **solo por Tailscale**. Los datos van al disco grande y las bases de datos al SSD, fuera de los volúmenes de Docker para no inflar la copia diaria. Más en [Fotos y archivos](docs/13-fotos-y-archivos.md).
 
 ---
 
-## 💾 Copias de seguridad
+## Copias de seguridad
 
 | Qué | En casa (disco de copias) | Fuera de casa (cifrada) |
 |---|---|---|
 | Configuraciones | ✅ Diaria, 14 días (~308 MB) | ✅ restic, 7 diarias + 4 semanales, verificación semanal |
-| Fotos y archivos | ✅ Diaria, con volcado de bases de datos | ⏳ Con el NAS futuro |
+| Fotos y archivos | ✅ Diaria, con volcado de bases de datos | Con el NAS futuro |
 | Biblioteca multimedia | ❌ Se puede volver a descargar | ❌ |
 
 - **Un RAID no es una copia:** no protege de un borrado, de un error de un programa o de un ransomware. Por eso, copias con historial.
@@ -316,11 +321,11 @@ Desde el 1 de noviembre, **Immich** (fotos, con subida automática desde el móv
 - **La mudanza fue la mejor prueba:** las 17 configuraciones exportadas en Windows se restauraron en el servidor sin un solo fallo.
 - **Un disco de copias inestable:** se desconecta por USB de vez en cuando. Ahora un temporizador lo vigila cada minuto y avisa al móvil, y las copias no se ejecutan si no está montado, para no escribir en el disco equivocado.
 
-→ [Copias de seguridad](docs/12-copias-de-seguridad.md)
+Más en [Copias de seguridad](docs/12-copias-de-seguridad.md).
 
 ---
 
-## 🧰 Problemas resueltos
+## Problemas resueltos
 
 Una selección; la lista completa, con síntoma, causa y solución, está en [Problemas resueltos](docs/14-problemas-resueltos.md).
 
@@ -344,7 +349,7 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 
 ---
 
-## 🚧 Próximos pasos
+## Próximos pasos
 
 - [x] **Mudanza al OptiPlex**, Quick Sync, AdGuard Home y Homepage retirado (31-oct).
 - [x] **RAM a 16 GB**, discos en su sitio y hardlinks recuperados (31-oct).
@@ -364,7 +369,7 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 
 ---
 
-## 📚 Documentación detallada
+## Documentación detallada
 
 | Página | Contenido |
 |---|---|
@@ -379,12 +384,12 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 | [09 · Acceso privado: Tailscale](docs/09-acceso-privado-tailscale.md) | Todo menos Jellyfin por VPN, scripts y cómo pasó el nombre al servidor |
 | [10 · Domótica: Home Assistant](docs/10-domotica-home-assistant.md) | Alarma de casa con Verisure OWA, limitaciones y seguridad |
 | [11 · DNS: AdGuard Home](docs/11-dns-adguard-home.md) | Despliegue junto al DNS de Ubuntu, DoH, listas y el problema del router del operador |
-| [12 · Copias de seguridad](docs/12-copias-de-seguridad.md) 🆕 | Copia local, copia cifrada fuera de casa y el disco de copias inestable |
-| [13 · Fotos y archivos](docs/13-fotos-y-archivos.md) 🆕 | Immich y Nextcloud: diseño del almacenamiento y copias |
+| [12 · Copias de seguridad](docs/12-copias-de-seguridad.md) | Copia local, copia cifrada fuera de casa y el disco de copias inestable |
+| [13 · Fotos y archivos](docs/13-fotos-y-archivos.md) | Immich y Nextcloud: diseño del almacenamiento y copias |
 | [14 · Problemas resueltos](docs/14-problemas-resueltos.md) | Registro de fallos: síntoma, causa y solución |
 | [Registro de cambios](CHANGELOG.md) | Evolución del homelab y cómo era cada parte antes |
 
-## 📁 Estructura del repositorio
+## Estructura del repositorio
 
 ```
 .

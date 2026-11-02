@@ -1,4 +1,4 @@
-# 💾 Copias de seguridad
+# Copias de seguridad
 
 [← Volver al README](../README.md)
 
@@ -9,7 +9,7 @@ Desde el 31 de octubre y el 1 de noviembre de 2026, el homelab tiene una estrate
 | Qué | Copia en casa (disco de copias) | Copia fuera de casa (cifrada) | Por qué |
 |---|---|---|---|
 | **Configuraciones** de todos los servicios | ✅ Diaria, 14 días | ✅ Diaria, 7 diarias + 4 semanales | Es lo que más trabajo costaría rehacer |
-| **Fotos y archivos** ([Immich y Nextcloud](13-fotos-y-archivos.md)) | ✅ Diaria, con volcado de sus bases de datos y 30 días para lo borrado | ⏳ Pendiente (cuando haya NAS) | No se pueden volver a conseguir |
+| **Fotos y archivos** ([Immich y Nextcloud](13-fotos-y-archivos.md)) | ✅ Diaria, con volcado de sus bases de datos y 30 días para lo borrado | Pendiente (cuando haya NAS) | No se pueden volver a conseguir |
 | **Biblioteca multimedia** | ❌ | ❌ | Se puede volver a descargar; duplicar cientos de GB no compensa |
 
 Un RAID no estaba en el plan: protege de que se rompa un disco, pero no de borrar algo por error, de que un programa se equivoque o de un ransomware, porque el error se copia al instante en los dos discos. Una copia con historial, sí.

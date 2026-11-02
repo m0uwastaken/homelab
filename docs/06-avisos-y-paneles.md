@@ -1,4 +1,4 @@
-# 🔔 Avisos y paneles propios
+# Avisos y paneles propios
 
 [← Volver al README](../README.md)
 

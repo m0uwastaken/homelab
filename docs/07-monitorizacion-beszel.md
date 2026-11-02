@@ -1,4 +1,4 @@
-# 📈 Monitorización: Beszel
+# Monitorización: Beszel
 
 [← Volver al README](../README.md)
 

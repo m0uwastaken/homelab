@@ -1,4 +1,4 @@
-# 🖥 Servidor: Dell OptiPlex 7060 SFF
+# Servidor: Dell OptiPlex 7060 SFF
 
 [← Volver al README](../README.md)
 
@@ -36,7 +36,7 @@ Sobre el papel, el cambio parece un *downgrade* en toda regla:
 
 **Dónde sí se nota la CPU más modesta:** en las tareas puntuales y pesadas, como reparar y descomprimir descargas, analizar intros o sincronizar subtítulos. Tardan algo más, pero hablamos de minutos y no afectan a nada de lo que se usa en el día a día.
 
-> 💤 **Y el mejor resultado no sale en ninguna tabla:** después de una semana con mi PC personal encendido día y noche, sufriendo con todos los contenedores a cuestas, por fin lo puedo apagar.
+> **Y el mejor resultado no sale en ninguna tabla:** después de una semana con mi PC personal encendido día y noche, sufriendo con todos los contenedores a cuestas, por fin lo puedo apagar.
 
 ### La prueba (28-oct)
 

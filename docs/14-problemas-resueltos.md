@@ -1,4 +1,4 @@
-# 🧰 Problemas resueltos
+# Problemas resueltos
 
 [← Volver al README](../README.md)
 
@@ -71,7 +71,7 @@ Registro de fallos que han ido apareciendo, con su causa real y cómo se resolvi
 - **Causa:** el puerto de escucha no llegaba al contenedor.
 - **Solución:** redirección del puerto en el router y regla en el firewall de Windows.
 
-### Usenet a solo ~10 MB/s ✅
+### Usenet a solo ~10 MB/s (resuelto)
 - **Causa:** la escritura en el HDD SMR a través de Docker Desktop, no la conexión ni el proveedor.
 - **Solución:** en el servidor nuevo, la carpeta temporal va al SSD.
 - **Comprobación (28-oct):** con NZBGet nativo en Windows, fuera de Docker y en el mismo disco, subió a 15–25 MB/s. La capa de Docker Desktop costaba la mitad de la velocidad; el resto lo limita el disco SMR. Ver [Servidor nuevo](08-servidor-nuevo.md#la-prueba-28-oct).

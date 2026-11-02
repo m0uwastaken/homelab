@@ -1,4 +1,4 @@
-# 🎬 Reproducción multimedia: Jellyfin
+# Reproducción multimedia: Jellyfin
 
 [← Volver al README](../README.md)
 

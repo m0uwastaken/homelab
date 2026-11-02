@@ -1,4 +1,4 @@
-# 🖼 Fotos y archivos: Immich y Nextcloud
+# Fotos y archivos: Immich y Nextcloud
 
 [← Volver al README](../README.md)
 

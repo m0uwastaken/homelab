@@ -1,4 +1,4 @@
-# 🛡 DNS de la red: AdGuard Home
+# DNS de la red: AdGuard Home
 
 [← Volver al README](../README.md)
 

@@ -1,4 +1,4 @@
-# 💬 Subtítulos con Bazarr
+# Subtítulos con Bazarr
 
 [← Volver al README](../README.md)
 

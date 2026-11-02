@@ -1,4 +1,4 @@
-# 🔒 Acceso privado: Tailscale
+# Acceso privado: Tailscale
 
 [← Volver al README](../README.md)
 

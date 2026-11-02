@@ -1,4 +1,4 @@
-# 📥 Descarga de ISOs y biblioteca
+# Descarga de ISOs y biblioteca
 
 [← Volver al README](../README.md)
 

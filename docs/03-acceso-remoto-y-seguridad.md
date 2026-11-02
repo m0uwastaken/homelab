@@ -1,4 +1,4 @@
-# 🔐 Acceso remoto y seguridad
+# Acceso remoto y seguridad
 
 [← Volver al README](../README.md)
 
@@ -134,12 +134,12 @@ Planteado el 27 de octubre. La idea central: con un solo puerto web abierto y fi
 
 | Fase | Qué | Estado |
 |---|---|---|
-| **0 · Ya, 0 €** | Gestor de contraseñas y una distinta por servicio; Jellyfin con el administrador sin acceso remoto y usuarios ocultos; router sin WPS ni UPnP y con wifi de invitados; qBittorrent sin descargar ejecutables (`*.exe`, `*.scr`, `*.lnk`, `*.bat`…); 2FA en el correo y en DuckDNS | 🔄 Contraseñas (aleatorias otra vez tras la mudanza) y administrador de Jellyfin hechos |
+| **0 · Ya, 0 €** | Gestor de contraseñas y una distinta por servicio; Jellyfin con el administrador sin acceso remoto y usuarios ocultos; router sin WPS ni UPnP y con wifi de invitados; qBittorrent sin descargar ejecutables (`*.exe`, `*.scr`, `*.lnk`, `*.bat`…); 2FA en el correo y en DuckDNS | En curso: Contraseñas (aleatorias otra vez tras la mudanza) y administrador de Jellyfin hechos |
 | **1 · Con el servidor, 0 €** | Tailscale para todo menos Jellyfin | ✅ 29-oct |
 | | Servidor dedicado: Caddy ve la IP real, cortafuegos `ufw` y nada del homelab en el PC personal | ✅ 31-oct |
-| | **CrowdSec** con su bouncer para Caddy: bloquea automáticamente IPs que atacan | 📋 |
-| | **docker-socket-proxy** para los servicios que leen el socket de Docker | 📋 |
+| | **CrowdSec** con su bouncer para Caddy: bloquea automáticamente IPs que atacan | Pendiente |
+| | **docker-socket-proxy** para los servicios que leen el socket de Docker | Pendiente |
 | | **Copia cifrada fuera de casa** con restic, con acceso mínimo a la nube | ✅ 1-nov (configuraciones). Ver [Copias](12-copias-de-seguridad.md) |
 | | **Fotos y archivos** propios (Immich, Nextcloud), solo por Tailscale | ✅ 1-nov |
-| **2 · Red, ~150 €** | Router propio detrás del del operador, con **4 redes separadas**: casa, teles e IoT, cámaras sin salida a internet e invitados. AdGuard dentro del router, para que internet no dependa del servidor y llegue a toda la casa (el router del operador no deja repartirlo) | 💭 Pendiente de decidir |
+| **2 · Red, ~150 €** | Router propio detrás del del operador, con **4 redes separadas**: casa, teles e IoT, cámaras sin salida a internet e invitados. AdGuard dentro del router, para que internet no dependa del servidor y llegue a toda la casa (el router del operador no deja repartirlo) | Pendiente de decidir |
 
