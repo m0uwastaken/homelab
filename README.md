@@ -19,7 +19,6 @@ Documentación de mi laboratorio doméstico: un servidor autoalojado con **desca
 
 Empezó como una prueba en **Docker Desktop sobre mi PC con Windows** y desde el **31 de octubre de 2026** corre en un **servidor dedicado**: un Dell OptiPlex 7060 SFF de segunda mano con Ubuntu Server. La idea es ir mejorándolo poco a poco, empezando por lo básico.
 
-> **Cómo lo estoy montando:** aprendo sobre la marcha y me apoyo en una IA (Claude) para diagnosticar problemas y escribir scripts. La idea es que, a medida que avance, cada vez más piezas sean desarrollos propios.
 
 ## 📌 Estado
 
