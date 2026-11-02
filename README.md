@@ -20,13 +20,13 @@ Documentación de mi homelab: un servidor en casa, montado en buena parte con ha
 
 <p align="center"><a href="docs/05-panel-homarr.md"><img src="images/homarr-escritorio.png" alt="Tablero de Homarr: el panel central del homelab"></a></p>
 
-<p align="center"><b>El panel central del homelab, en Homarr.</b> Las dos máquinas, los bloqueos de CrowdSec, las descargas en directo, las notificaciones, las gráficas del servidor y todas las apps con su punto de estado, en una sola pantalla.<br><sub>Las alertas de seguridad son de mis propias pruebas con escáneres web. Los nombres de proveedores, indexadores y descargas están tapados.</sub></p>
+<p align="center"><b>El panel central del homelab, en Homarr.</b> Las dos máquinas, los bloqueos de CrowdSec, las notificaciones, las gráficas del servidor y todas las apps con su punto de estado, en una sola pantalla.<br><sub>Las alertas de seguridad son de mis propias pruebas con escáneres web. Algunos datos están tapados.</sub></p>
 
 ## Por qué lo monté
 
 Estaba harto de que Gmail y Google Drive me avisaran cada dos por tres de que me quedaba sin almacenamiento, y de que HBO Max me metiera anuncios en mitad de las series. Además, tenía varios discos duros de ordenadores antiguos cogiendo polvo y quería darles una segunda vida.
 
-Así que monté mi propio servidor: mis fotos y archivos en casa, mi biblioteca multimedia sin anuncios y, de paso, un sitio donde aprender Linux, Docker, redes y seguridad. Hoy tiene descarga de ISOs automatizada, reproducción multimedia en las teles de casa (y, de forma segura, también fuera), un panel central, monitorización, acceso privado por VPN, DNS con bloqueo de anuncios, domótica con la alarma de casa integrada, fotos y archivos propios y copias de seguridad dentro y fuera de casa.
+Así que monté mi propio servidor: mis fotos y archivos en casa, mi biblioteca multimedia sin anuncios y, de paso, un sitio donde aprender Linux, Docker, redes y seguridad. Hoy tiene **Jellyfin** para ver mi biblioteca en las teles de casa (y, de forma segura, también fuera), un panel central, monitorización, acceso privado por VPN, DNS con bloqueo de anuncios, domótica con la alarma de casa integrada, fotos y archivos propios y copias de seguridad dentro y fuera de casa.
 
 Empezó como una prueba en Docker Desktop sobre mi PC con Windows y desde el 31 de octubre de 2026 corre en un servidor dedicado: un Dell OptiPlex 7060 SFF de segunda mano con Ubuntu Server y los discos que tenía por casa. La idea es ir mejorándolo poco a poco.
 
@@ -44,7 +44,7 @@ Sobre el papel, la mudanza fue un *downgrade*: de un Ryzen 5 5600 con 16 GB a un
 
 | | PC con Windows | OptiPlex con Ubuntu |
 |---|---|---|
-| Descargas por Usenet | ~10 MB/s | **84,9 MB/s**, con picos de 771 Mb/s: más de 8 veces más rápido, cerca del máximo de la fibra |
+| Velocidad de descarga | ~10 MB/s | **84,9 MB/s**: más de 8 veces más rápido, cerca del máximo de la fibra |
 | Transcodificar vídeo | Con el procesador | Con la gráfica integrada (Quick Sync): el procesador, libre |
 | Archivos nuevos en Jellyfin | Al siguiente escaneo | Al momento |
 | Disponibilidad | Mientras el PC estuviera encendido | 24/7, en una máquina dedicada |
@@ -58,11 +58,10 @@ Los porqués, la prueba previa y cómo fue la mudanza: más en [Servidor](docs/0
 
 - **[CrowdSec](docs/03-acceso-remoto-y-seguridad.md#crowdsec-bloqueo-automático-2-nov):** Caddy bloquea automáticamente las IPs que atacan. Lo probé lanzando un escáner contra mi propio dominio: el filtro por país lo paró en la puerta y CrowdSec lo marcó como malicioso.
 - **[El socket de Docker, en solo lectura](docs/03-acceso-remoto-y-seguridad.md#el-socket-de-docker-en-solo-lectura-2-nov):** Beszel ve los contenedores a través de un proxy, pero ya no podría tocarlos.
-- **[Una reacción en cadena en las descargas](docs/01-descarga-de-isos.md#mejoras-automáticas-una-reacción-en-cadena-2-nov),** diagnosticada y cortada, y **[125 GB compartidos protegidos con hardlinks](docs/01-descarga-de-isos.md#proteger-lo-que-se-está-compartiendo-2-nov)** sin ocupar ni un byte más.
 - **[Homarr reorganizado](docs/05-panel-homarr.md#cómo-está-ahora-3-nov)** con un panel de CrowdSec: las alertas de la captura las provoqué yo con escáneres web contra mi propio dominio.
 - **[La primera noche completa de copias](docs/12-copias-de-seguridad.md#la-primera-noche-completa-2-nov):** configuraciones, fotos, archivos y la copia cifrada, todas correctas.
 
-Del 31 de octubre y el 1 de noviembre: el [servidor asentado](docs/08-servidor-nuevo.md#después-de-la-mudanza-asentar-el-servidor-31-oct) (RAM a 16 GB y 46,4 GiB recuperados al volver a unir los hardlinks), [copias de seguridad](docs/12-copias-de-seguridad.md) dentro y fuera de casa, [fotos y archivos](docs/13-fotos-y-archivos.md) con Immich y Nextcloud, [Claude Code en el servidor](docs/08-servidor-nuevo.md#claude-code-en-el-servidor), y [la tele LG](docs/02-reproduccion-multimedia.md#la-tele-lg-que-dejó-de-cargar-1-nov) y el [panel de descargas que mentía](docs/06-avisos-y-paneles.md#el-panel-de-descargas-que-mentía-31-oct), arreglados.
+Del 31 de octubre y el 1 de noviembre: el [servidor asentado](docs/08-servidor-nuevo.md#después-de-la-mudanza-asentar-el-servidor-31-oct) (RAM a 16 GB y 46,4 GiB recuperados al volver a unir los hardlinks), [copias de seguridad](docs/12-copias-de-seguridad.md) dentro y fuera de casa, [fotos y archivos](docs/13-fotos-y-archivos.md) con Immich y Nextcloud, [Claude Code en el servidor](docs/08-servidor-nuevo.md#claude-code-en-el-servidor) y [la tele LG](docs/02-reproduccion-multimedia.md#la-tele-lg-que-dejó-de-cargar-1-nov), que había dejado de cargar Jellyfin, arreglada.
 
 Del 30–31 de octubre: la [mudanza al OptiPlex](docs/08-servidor-nuevo.md#la-mudanza-3031-de-octubre), Quick Sync en Jellyfin, [AdGuard Home](docs/11-dns-adguard-home.md) y Homepage retirado.
 
@@ -74,13 +73,13 @@ _Última actualización: 3 de noviembre de 2026._
 
 - [Arquitectura](#arquitectura)
   - [Red](#red)
-  - [Flujo de una petición](#flujo-de-una-petición)
   - [Acceso desde fuera de casa: dos puertas](#acceso-desde-fuera-de-casa-dos-puertas)
 - [Hardware](#hardware)
 - [Servicios](#servicios)
+- [Jellyfin](#jellyfin-reproducción-multimedia)
 - [Panel: Homarr](#panel-homarr)
 - [Monitorización: Beszel](#monitorización-beszel)
-- [Avisos y paneles propios](#avisos-y-paneles-propios)
+- [Avisos al móvil](#avisos-al-móvil)
 - [Acceso privado: Tailscale](#acceso-privado-tailscale)
 - [DNS: AdGuard Home](#dns-adguard-home)
 - [Fotos y archivos](#fotos-y-archivos)
@@ -120,35 +119,15 @@ flowchart LR
 | Router | Router del operador, fibra de 1 Gb |
 | Red de casa | `192.168.1.0/24`. El servidor, el PC y el portátil van por cable al mismo switch gigabit, así que entre ellos van a velocidad completa aunque internet esté ocupado. El servidor tiene la misma IP fija que antes tenía el PC, y el PC otra IP fija |
 | Red interna de Docker | `172.30.0.0/24`, con Caddy en una IP fija para que Jellyfin lo reconozca como proxy |
-| Puertos abiertos | Solo el **443** (Jellyfin a través de Caddy) y el puerto de escucha del cliente de descargas. Tailscale no necesita ninguno |
+| Puertos abiertos | El **443** (Jellyfin a través de Caddy) y uno más para descargas. Tailscale no necesita ninguno |
 | VPN | Tailscale (WireGuard) con MagicDNS: el servidor es `homelab.<mi-red>.ts.net` |
 | DNS | AdGuard Home en el servidor, configurado a mano en cada aparato (el router del operador no deja repartirlo) |
 | DNS dinámico | DuckDNS, porque el operador puede cambiar la IP pública |
 
-### Flujo de una petición
-
-Desde el móvil se hace una petición y, sin tocar nada más, el resultado acaba ordenado en la biblioteca y disponible en la tele.
-
-```mermaid
-flowchart LR
-    M["Seerr<br/>(peticiones)"] --> ARR["Gestores de<br/>biblioteca"]
-    ARR -->|busca| PROW["Prowlarr<br/>proveedores /<br/>indexadores"]
-    ARR -->|envía| DL["Clientes de descarga<br/>Usenet · BitTorrent"]
-    DL --> DATA[("/data<br/>un solo disco,<br/>hardlinks")]
-    ARR -->|renombra e importa| DATA
-    BAZ["Bazarr<br/>subtítulos"] --> DATA
-    DATA --> JF["Jellyfin<br/>reproducción"]
-    JF --> TV["Teles y móviles"]
-    DEC["Decluttarr"] -.->|limpia atascos| DL
-    AV["avisos<br/>(Python)"] -.->|ntfy| PH["Notificaciones"]
-```
-
-Las descargas y la biblioteca viven bajo una misma carpeta `/data`, así la importación se hace con **hardlinks**: al instante y sin ocupar el doble. Más detalle en [Descarga de ISOs](docs/01-descarga-de-isos.md).
-
 ### Acceso desde fuera de casa: dos puertas
 
 - **Pública:** solo Jellyfin, publicado con Caddy y con filtros, para que la familia lo vea sin instalar nada.
-- **Privada:** todo lo demás (Homarr, gestores, clientes de descarga, Beszel, AdGuard, Home Assistant…), solo por **Tailscale**, sin abrir ningún puerto más.
+- **Privada:** todo lo demás (Homarr, Beszel, AdGuard, Home Assistant, fotos y archivos…), solo por **Tailscale**, sin abrir ningún puerto más.
 
 ```mermaid
 flowchart LR
@@ -156,7 +135,7 @@ flowchart LR
     CADDY -->|"España, uso normal"| JF["Jellyfin"]
     CADDY -->|"otros países, admin, bots,<br/>IPs bloqueadas por CrowdSec"| X1["403 / 404"]
     YO["Mis aparatos<br/>con Tailscale"] -->|"WireGuard"| TS["Tailscale<br/>«homelab»"]
-    TS --> APPS["Homarr · gestores · descargas<br/>Beszel · AdGuard · Home Assistant"]
+    TS --> APPS["Homarr · Beszel · AdGuard<br/>Home Assistant · fotos y archivos"]
     NET["Resto de internet"] -.->|"sin puertos"| APPS
 ```
 
@@ -200,7 +179,7 @@ Antes de usarlos, revisé la salud de los tres discos con SMART y repartí los p
 | Tele LG (webOS, modelo antiguo) | App de Jellyfin de LG Content Store |
 | Android TV / Chromecast con Google TV | App nativa de Jellyfin |
 | PC, iPhone e iPad | Jellyfin en navegador o app; Homarr como página de inicio; AdGuard como DNS |
-| Móvil | Tailscale siempre activo; Seerr y Homarr en la pantalla de inicio |
+| Móvil | Tailscale siempre activo; Homarr en la pantalla de inicio |
 
 ---
 
@@ -212,16 +191,11 @@ Todo corre en contenedores con Docker Compose, salvo Tailscale, que va instalado
 |---|---|---|---|
 | Reproducción multimedia | **Jellyfin** | Streaming a teles y móviles, con transcodificación por hardware | Casa + internet (vía Caddy) |
 | | **Bazarr** | Subtítulos automáticos y sincronizados con el vídeo | Casa |
-| Descarga de ISOs | **Seerr** | Peticiones desde el móvil | Casa |
-| | **Sonarr / Radarr** | Gestores de biblioteca: deciden qué descargar, renombran e importan | Casa |
-| | **Questarr** | Gestor de biblioteca para juegos | Casa |
-| | **Prowlarr** (+ Jackett y FlareSolverr) | Proveedores / indexadores | Casa |
-| | **NZBGet · qBittorrent** | Clientes de descarga (Usenet y BitTorrent) | Casa |
-| | **Decluttarr** | Limpia descargas atascadas o fallidas | Solo interno |
+| Descarga de ISOs | Gestores de biblioteca, indexadores y clientes de descarga | Descarga automatizada y biblioteca ordenada. Detalle en [su página](docs/01-descarga-de-isos.md) | Casa |
 | Panel y monitorización | **Homarr** | Panel principal (Homepage, el anterior, retirado el 31-oct) | Casa |
 | | **Beszel** | Monitorización de recursos y alertas, del servidor y del PC | Casa |
 | | **docker-socket-proxy** | Acceso de solo lectura a Docker, para que Beszel no necesite el socket | Solo el propio servidor |
-| | **avisos** (propio) | Notificaciones por ntfy, página "Actividad" y paneles de descargas | Casa |
+| | **avisos** (propio) | Notificaciones por ntfy y paneles propios para Homarr | Casa |
 | Red | **AdGuard Home** | DNS con bloqueo de anuncios y rastreadores, DoH hacia fuera | Casa |
 | Personal | **Immich** | Fotos, con subida automática desde el móvil | Solo Tailscale |
 | | **Nextcloud** | Archivos | Solo Tailscale |
@@ -232,15 +206,39 @@ Todo corre en contenedores con Docker Compose, salvo Tailscale, que va instalado
 | | **DuckDNS** | Mantiene el dominio apuntando a la IP de casa | Solo interno |
 | | **Tailscale** | VPN para todo lo demás; instalado en el sistema, no en Docker | Mis aparatos |
 
-### Reproducción multimedia
+---
 
-<!-- 📸 Captura de la pantalla de inicio con el tema: images/jellyfin-inicio.png -->
+## Jellyfin: reproducción multimedia
 
-Jellyfin con aspecto de plataforma de streaming: carrusel de portada (**Media Bar**), etiquetas de calidad e idioma en los pósters (**Jellyfin Enhanced**), botón para **saltar intros y créditos** (**Intro Skipper**) y el tema **Jellyfish**. Antes de activarlo en todas partes comprobé qué funciona en cada aparato, incluida una tele LG antigua (a la que hubo que quitarle un plugin el 1-nov). Tiene también **TV en directo** con guía de programación y, desde la mudanza, **transcodificación por hardware con Quick Sync**. Más en [Reproducción multimedia](docs/02-reproduccion-multimedia.md).
+<p align="center"><img src="images/jellyfin-login.png" alt="Inicio de sesión de Jellyfin, con los usuarios ocultos" width="640"></p>
 
-### Subtítulos
+Jellyfin es la parte del homelab que usa toda la casa: la biblioteca multimedia en las teles, los móviles y el navegador, sin anuncios. Y es **el único servicio publicado en internet**, para que la familia pueda verlo desde su casa sin instalar nada. Por eso toda la seguridad de la puerta pública (Caddy, el filtro por país y CrowdSec) existe para protegerlo a él.
 
-Bazarr descarga los subtítulos y los **sincroniza solos** con ffsubsync, usando como referencia los subtítulos incrustados del vídeo o el audio. Un script en PowerShell aplica los ajustes y resincroniza en lote los que ya había, guardando una copia de los originales. Más en [Subtítulos con Bazarr](docs/04-subtitulos-bazarr.md).
+```mermaid
+flowchart LR
+    BIB[("Biblioteca<br/>disco de datos")] --> JF["Jellyfin<br/>Quick Sync"]
+    BAZ["Bazarr<br/>subtítulos"] --> BIB
+    JF --> CASA["Teles y móviles<br/>en casa"]
+    JF --> CADDY["Caddy<br/>+ CrowdSec"]
+    CADDY --> FAM["Familia,<br/>desde fuera"]
+```
+
+**Cómo se ve y dónde funciona**
+
+- **Aspecto de plataforma de streaming:** carrusel de portada (**Media Bar**), etiquetas de calidad e idioma en los pósters (**Jellyfin Enhanced**), botón para **saltar intros y créditos** (**Intro Skipper**) y el tema **Jellyfish**.
+- **Probado aparato por aparato** antes de activarlo en todas partes: una tele LG antigua (a la que hubo que quitarle un plugin el 1-nov), Android TV, Chromecast, móviles y navegador.
+- **Transcodificación por hardware con Quick Sync** y tone mapping desde la mudanza: el procesador queda libre.
+- **TV en directo** con guía de programación.
+- **Subtítulos con Bazarr**, que los descarga y los **sincroniza solos** con ffsubsync. Más en [Subtítulos con Bazarr](docs/04-subtitulos-bazarr.md).
+
+**Cómo está protegido**
+
+- **Usuarios:** el administrador no puede entrar desde internet, todos los usuarios están ocultos en la pantalla de inicio de sesión y el usuario externo tiene permisos mínimos y bloqueo tras 5 intentos fallidos.
+- **Caddy delante:** solo conexiones desde España, rutas de administración cerradas desde fuera y rutas típicas de bots cortadas.
+- **CrowdSec** lee los accesos de Caddy y los inicios de sesión de Jellyfin, y bloquea las IPs que escanean, buscan fallos o prueban contraseñas. Lo probé con escáneres web contra mi propio dominio: son las alertas que se ven en el panel de arriba.
+- **Avisos al móvil** de intentos fallidos, usuarios bloqueados y dispositivos nuevos.
+
+La biblioteca se alimenta de la [descarga de ISOs](docs/01-descarga-de-isos.md), que tiene su propia página. Más sobre Jellyfin en [Reproducción multimedia](docs/02-reproduccion-multimedia.md), y sobre su seguridad en [Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md).
 
 ---
 
@@ -253,7 +251,6 @@ Es la página de inicio de mi navegador y la [captura de arriba del todo](#mi-ho
 | Columna izquierda | Todas las apps por categorías, cada una con su punto de estado |
 | Máquinas | PC y servidor con Beszel: CPU, memoria, disco, temperatura y tiempo encendido |
 | Seguridad | Panel de CrowdSec: alertas de 24 h y 7 días, IPs bloqueadas ahora y últimas alertas en castellano |
-| Descargas | Paneles propios de BitTorrent y Usenet, refrescados cada 3 s |
 | Notificaciones | Lo mismo que llega al móvil por ntfy |
 | Gráficas | CPU, memoria, disco, red y uso por contenedor del servidor |
 | Jellyfin | Quién está viendo algo y en qué aparato |
@@ -262,14 +259,13 @@ Desde el 26 de octubre, **Homarr v2** es la página de inicio del homelab, y des
 
 - **Integraciones por nombre de contenedor** (`http://jellyfin:8096`…): sobrevivieron a la mudanza sin tocar nada. Las pocas que usan la IP del servidor necesitaron abrir el cortafuegos a las redes de Docker.
 - **Tablero** con tema "aurora / glass" y CSS propio para que todo, incluidos widgets de la comunidad, tenga el mismo estilo de cristal translúcido.
-- **Paneles de descargas hechos a medida** (Python) y metidos como iFrame, con fondo transparente y refresco cada 3 s, porque los widgets de serie se quedaban cortos.
-- **Estado de todo de un vistazo:** máquinas (Beszel), **alertas y bloqueos de CrowdSec**, notificaciones, indexadores, reproducciones en curso y, en una columna a la izquierda, todas las apps con su punto de estado.
-- **Útil para mantener:** el widget de indexadores destapó duplicados y fallos que ralentizaban las búsquedas.
+- **Paneles hechos a medida** (Python) y metidos como iFrame, con fondo transparente, porque algunos widgets de serie se quedaban cortos.
+- **Estado de todo de un vistazo:** máquinas (Beszel), **alertas y bloqueos de CrowdSec**, notificaciones, reproducciones en curso y, en una columna a la izquierda, todas las apps con su punto de estado.
 
 ```mermaid
 flowchart LR
     NAV["/ "] --> H["Homarr :7575"]
-    H -->|API| APPS["Jellyfin · Seerr · gestores<br/>indexadores · Bazarr · AdGuard"]
+    H -->|API| APPS["Jellyfin · Bazarr · AdGuard<br/>Immich · Nextcloud"]
     H -->|"solo lectura"| BZ["Beszel"]
     H --> NT["ntfy"]
     H -->|"iFrame ?embed=1"| AV["avisos :3001<br/>paneles propios"]
@@ -281,9 +277,9 @@ Despliegue, integraciones, diseño del tablero, CSS, paneles propios y lo que ap
 
 **Beszel** mide CPU, RAM, red, temperatura, discos (con **SMART**) y **cada contenedor por separado**, guarda historial y avisa al móvil por ntfy. Se mudó al servidor con su historial: ahora vigila el **servidor** con su propio agente y el **PC** con un agente nativo de Windows, que solo acepta conexiones del servidor. Más en [Monitorización: Beszel](docs/07-monitorizacion-beszel.md).
 
-## Avisos y paneles propios
+## Avisos al móvil
 
-Un servicio **en Python sin dependencias** envía notificaciones al móvil por **ntfy** (lo añadido, lo fallido y alertas de seguridad de Jellyfin), sirve una página **"Actividad"** con el motivo de cada fallo explicado en castellano y genera los **paneles de descargas** de Homarr. Más en [Avisos y paneles propios](docs/06-avisos-y-paneles.md).
+Un servicio **en Python sin dependencias** envía notificaciones al móvil por **ntfy**, sobre todo **alertas de seguridad de Jellyfin** (intentos fallidos, usuarios bloqueados, dispositivos nuevos), y genera los paneles propios de Homarr. Más en [Avisos y paneles propios](docs/06-avisos-y-paneles.md).
 
 ## Acceso privado: Tailscale
 
@@ -357,10 +353,7 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 
 | Problema | Causa | Solución |
 |---|---|---|
-| Usenet a solo ~10 MB/s | Escritura en un HDD SMR a través de Docker Desktop | ✅ En el servidor, temporal en SSD y disco CMR: **84,9 MB/s** |
 | Disco C: casi lleno | El disco virtual de Docker (WSL2) había crecido a 61 GB | Limpieza, `fstrim` y compactado con `diskpart`: ~54 GB recuperados |
-| Descargas casi completas que acababan borradas | Fallo en la extensión *Completion* de NZBGet: revisaba el NZB equivocado y castigaba a otro | Parche de ~6 líneas en su `main.py` |
-| Avisos de qBittorrent que dejaron de llegar | qBittorrent 5.2 cambió la respuesta de su inicio de sesión | Aceptar el 204, cookie a mano y espera tras un fallo para no autobloquearse |
 | Jellyfin trataba internet como red local | NAT de Docker en Windows | Filtros en Caddy, redes de Jellyfin y Caddy fuera de Docker |
 | Notificaciones de Homarr con `ETIMEDOUT` | Node da 250 ms por intento de conexión y WSL2 añade latencia | `--network-family-autoselection-attempt-timeout=2000` |
 | *Connect Timeout* entre contenedores en el servidor | El cortafuegos no dejaba pasar las redes de Docker | `ufw allow from 172.16.0.0/12`, también en el script de instalación |
@@ -372,7 +365,6 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 | "Parado", pero seguía en marcha | Script lanzado sin administrador que informaba mal | Pararlo a mano y comprobar cada paso, no el mensaje |
 | La integración oficial de Verisure no inicia sesión | Habla con MyPages; las cuentas de España están en OWA | Integración comunitaria Verisure OWA |
 | SMART idéntico en dos discos distintos | El adaptador USB mezclaba los datos con dos discos a la vez | Revisarlos de uno en uno |
-| Mejoras automáticas que bajaban de calidad en cadena | *Completion* con tolerancia 0 % y un perfil que ponía 720p por encima de 1080p HDTV | Perfil reordenado y papelera de 30 días |
 | `:ro` en el socket de Docker no protegía nada | A través del socket se habla con toda la API de Docker | docker-socket-proxy de solo lectura |
 
 ---
@@ -387,13 +379,13 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 - [x] **Primeras copias automáticas**, todas correctas (2-nov).
 - [ ] **Resolver los cortes USB** del disco de copias.
 - [ ] **Restauración de prueba** de la copia cifrada.
-- [ ] **Flecos del 2-nov:** desactivar el reintento automático de descargas fallidas, limpiar un bloqueador sobrante de CrowdSec y revisar el audio de dos episodios importados sin idioma marcado.
+- [ ] **Limpiar un bloqueador sobrante de CrowdSec**, y otros flecos menores del 2-nov.
 - [ ] **Avisos de seguridad de Jellyfin:** su clave de API da error 401.
 - [ ] **Refresco de los canales de TV en directo**, que está fallando.
 - [ ] **Ampliar el almacenamiento** en el Black Friday, y la copia fuera de casa de fotos y archivos.
 - [ ] **Desinstalar Docker Desktop del PC** tras una semana estable.
 - [ ] **Versionar la configuración en git** (compose, Caddyfile, scripts), sin claves.
-- [ ] **Homarr:** diseño para móvil, calendario y peticiones, e integración con Home Assistant.
+- [ ] **Homarr:** diseño para móvil e integración con Home Assistant.
 - [ ] **Home Assistant:** app en el móvil y automatizaciones.
 - [ ] **Router propio** para repartir AdGuard a toda la casa y separar la red.
 
@@ -403,12 +395,12 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 
 | Página | Contenido |
 |---|---|
-| [01 · Descarga de ISOs](docs/01-descarga-de-isos.md) | Gestores de biblioteca, indexadores, clientes de descarga, carpetas, Decluttarr, mejoras automáticas y hardlinks para lo que se comparte |
+| [01 · Descarga de ISOs](docs/01-descarga-de-isos.md) | La parte automatizada que llena la biblioteca |
 | [02 · Reproducción multimedia](docs/02-reproduccion-multimedia.md) | Jellyfin: plugins, tema, compatibilidad con cada aparato, TV en directo y Quick Sync |
 | [03 · Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md) | Caddy, DuckDNS, filtro por país, CrowdSec, socket de Docker en solo lectura, alertas, contraseñas y plan de seguridad por fases |
 | [04 · Subtítulos con Bazarr](docs/04-subtitulos-bazarr.md) | Sincronización automática y script en lote |
 | [05 · Panel principal: Homarr](docs/05-panel-homarr.md) | Despliegue, integraciones, tablero, tema, paneles propios y cómo era antes con Homepage |
-| [06 · Avisos y paneles propios](docs/06-avisos-y-paneles.md) | Servicio en Python: ntfy, página Actividad y paneles de descargas |
+| [06 · Avisos y paneles propios](docs/06-avisos-y-paneles.md) | Servicio en Python: ntfy y paneles propios |
 | [07 · Monitorización: Beszel](docs/07-monitorizacion-beszel.md) | Hub, agentes, alertas, integraciones y su mudanza al servidor |
 | [08 · Servidor](docs/08-servidor-nuevo.md) | Por qué no es un paso atrás (con resultados medidos), la mudanza paso a paso, RAM, hardlinks, Claude Code, discos y kit de mudanza |
 | [09 · Acceso privado: Tailscale](docs/09-acceso-privado-tailscale.md) | Todo menos Jellyfin por VPN, scripts y cómo pasó el nombre al servidor |
