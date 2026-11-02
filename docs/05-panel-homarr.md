@@ -4,7 +4,9 @@
 
 Desde el **26 de octubre de 2026**, **Homarr** (v2) es la página de inicio del homelab: un único tablero desde el que veo el estado de todo y salto a cualquier servicio. Sustituye a **Homepage**, que usé hasta entonces y que quedó **retirado el 31 de octubre** (ver [Cómo era antes](#cómo-era-antes-homepage)).
 
-![Tablero de Homarr en el PC](../images/homarr-escritorio.png)
+![Tablero de Homarr en el PC, 3 de noviembre](../images/homarr-escritorio.png)
+
+*El tablero el 3 de noviembre. Las alertas de seguridad que se ven las provoqué yo, lanzando escáneres web contra mi propio dominio para probar [CrowdSec](03-acceso-remoto-y-seguridad.md#consola-web-y-prueba-con-un-escáner-3-nov). Los nombres de proveedores, indexadores y descargas están tapados.*
 
 ## Por qué el cambio
 
@@ -86,7 +88,23 @@ Las **integraciones** apuntan a los servicios por su **nombre de contenedor** (`
 | Diseño base | Breakpoint **1200 px**, **14 columnas**, sin barras laterales |
 | Tema | "Aurora / glass" en *Custom CSS* (~8 KB): fondo con degradados y tarjetas translúcidas |
 
-Orden aproximado, de arriba abajo, para que lo que más miro quede arriba:
+#### Cómo está ahora (3-nov)
+
+- **Columna izquierda:** los accesos a todas las apps, por categorías (multimedia, proveedores, sistema, clientes de descarga, fotos y archivos, alarma), cada una con su punto de estado. CrowdSec entra en "sistema".
+- **Arriba**, lo que quiero ver de un vistazo: las dos máquinas (PC y servidor) con Beszel, el **panel de CrowdSec** y el panel de BitTorrent.
+- **Abajo:** las notificaciones de ntfy, las gráficas del servidor (CPU, memoria, disco, red y uso por contenedor), el estado de los indexadores, el panel de Usenet y quién está viendo algo en Jellyfin.
+
+**El panel de CrowdSec**, nuevo, enseña en castellano:
+
+- Cuántas alertas ha habido en las últimas 24 horas y en los últimos 7 días, y de cuántos países.
+- **Las IPs bloqueadas ahora mismo**, con el motivo y el tiempo de bloqueo que les queda.
+- **Las últimas alertas**, traducidas a algo legible: "Busca archivos sensibles", "Busca paneles de administración", "Rastreo agresivo", "Escaneo de rutas", "Herramienta de ataque", "Identifica la tecnología"…
+
+En la captura, todo eso lo provoqué yo: lancé **escáneres web** contra mi propio dominio y CrowdSec bloqueó las dos IPs desde las que escaneaban (2 bloqueos activos, 6 alertas). Las mismas pruebas se ven en las notificaciones de la izquierda: el aviso de prueba de CrowdSec, tal como llegará al móvil cuando bloquee un ataque de verdad, y dos **intentos fallidos de iniciar sesión como `admin` en Jellyfin**, que también saltaron con el escaneo.
+
+#### Cómo era antes (26-oct – 2-nov)
+
+Una sola columna de arriba abajo, sin barra de apps a la izquierda:
 
 1. **Paneles de descargas** en directo, a lo ancho (iFrames de los [paneles propios](#paneles-propios-dentro-de-homarr)).
 2. **Estado de las máquinas**: gráficas de CPU y RAM y tarjetas por sistema (Beszel).
@@ -103,6 +121,7 @@ Orden aproximado, de arriba abajo, para que lo que más miro quede arriba:
 | Indexer manager status | Integración Prowlarr + Jackett | Qué indexadores responden y cuáles fallan |
 | Media server streams | Integración Jellyfin | Reproducciones en curso |
 | Categorized App List with Status Dots | Widget de la comunidad | Botones de todas las apps, por categorías, con un punto de estado (verde, naranja o rojo) |
+| Panel de CrowdSec (3-nov) | CrowdSec | Alertas de 24 h y 7 días, IPs bloqueadas ahora y últimas alertas en castellano |
 
 ### Tema "cristal"
 

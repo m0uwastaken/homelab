@@ -10,7 +10,7 @@ Desde una página de `docs/`, la ruta lleva `../` delante, por ejemplo `../image
 
 | Archivo | Qué es | Dónde se usa |
 |---|---|---|
-| `homarr-escritorio.png` | Tablero de Homarr en el PC | README y `docs/05-panel-homarr.md` |
+| `homarr-escritorio.png` | Tablero de Homarr en el PC (3-nov, con el panel de CrowdSec) | README y `docs/05-panel-homarr.md` |
 | `homarr-torrents.png` · `homarr-nzb.png` | Los dos paneles de descargas propios | `docs/05-panel-homarr.md` |
 | `homarr-alertas.png` | Alertas de Beszel en Homarr | `docs/07-monitorizacion-beszel.md` |
 | `beszel.png` | Beszel: el servidor en la última hora | `docs/07-monitorizacion-beszel.md` |

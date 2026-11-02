@@ -8,6 +8,7 @@ Cómo ha ido evolucionando el homelab, de lo más reciente a lo más antiguo. La
 
 - **Consola web de CrowdSec** (plan gratuito): el servidor inscrito; hizo falta reiniciar CrowdSec para que empezara a sincronizar. Una alerta de prueba con una IP de documentación llegó a la consola.
 - **Tráfico normal:** las visitas desde el móvil con datos se analizaron sin saltar ninguna alerta.
+- **Homarr reorganizado:** apps en una columna a la izquierda y un **panel de CrowdSec** nuevo arriba, con las alertas de 24 h y 7 días, las IPs bloqueadas ahora y las últimas alertas en castellano. Captura del tablero actualizada; las alertas que se ven son de mis propios escáneres. Más en [Homarr](docs/05-panel-homarr.md#cómo-está-ahora-3-nov).
 - **Escáner externo** contra mi propio dominio: 51 rutas en 53 segundos, todas con 403 por el filtro por país, y aun así CrowdSec marcó la IP como maliciosa (5 alertas, 4 decisiones). Más en [Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md#consola-web-y-prueba-con-un-escáner-3-nov).
 
 ## 2 de noviembre de 2026: CrowdSec, socket de Docker y una reacción en cadena

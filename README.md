@@ -55,6 +55,7 @@ Los porqués, la prueba previa y cómo fue la mudanza: más en [Servidor](docs/0
 - **[CrowdSec](docs/03-acceso-remoto-y-seguridad.md#crowdsec-bloqueo-automático-2-nov):** Caddy bloquea automáticamente las IPs que atacan. Lo probé lanzando un escáner contra mi propio dominio: el filtro por país lo paró en la puerta y CrowdSec lo marcó como malicioso.
 - **[El socket de Docker, en solo lectura](docs/03-acceso-remoto-y-seguridad.md#el-socket-de-docker-en-solo-lectura-2-nov):** Beszel ve los contenedores a través de un proxy, pero ya no podría tocarlos.
 - **[Una reacción en cadena en las descargas](docs/01-descarga-de-isos.md#mejoras-automáticas-una-reacción-en-cadena-2-nov),** diagnosticada y cortada, y **[125 GB compartidos protegidos con hardlinks](docs/01-descarga-de-isos.md#proteger-lo-que-se-está-compartiendo-2-nov)** sin ocupar ni un byte más.
+- **[Homarr reorganizado](docs/05-panel-homarr.md#cómo-está-ahora-3-nov)** con un panel de CrowdSec: las alertas de la captura las provoqué yo con escáneres web contra mi propio dominio.
 - **[La primera noche completa de copias](docs/12-copias-de-seguridad.md#la-primera-noche-completa-2-nov):** configuraciones, fotos, archivos y la copia cifrada, todas correctas.
 
 Del 31 de octubre y el 1 de noviembre: el [servidor asentado](docs/08-servidor-nuevo.md#después-de-la-mudanza-asentar-el-servidor-31-oct) (RAM a 16 GB y 46,4 GiB recuperados al volver a unir los hardlinks), [copias de seguridad](docs/12-copias-de-seguridad.md) dentro y fuera de casa, [fotos y archivos](docs/13-fotos-y-archivos.md) con Immich y Nextcloud, [Claude Code en el servidor](docs/08-servidor-nuevo.md#claude-code-en-el-servidor), y [la tele LG](docs/02-reproduccion-multimedia.md#la-tele-lg-que-dejó-de-cargar-1-nov) y el [panel de descargas que mentía](docs/06-avisos-y-paneles.md#el-panel-de-descargas-que-mentía-31-oct), arreglados.
@@ -243,12 +244,14 @@ Bazarr descarga los subtítulos y los **sincroniza solos** con ffsubsync, usando
 
 ![Tablero de Homarr](images/homarr-escritorio.png)
 
+*Las alertas de seguridad de la captura son de mis propias pruebas con escáneres web. Los nombres de proveedores, indexadores y descargas están tapados.*
+
 Desde el 26 de octubre, **Homarr v2** es la página de inicio del homelab, y desde el 31 el único panel: **Homepage**, que se configuraba con archivos YAML, quedó retirado tras la mudanza. Homarr se configura desde la propia web, guarda las credenciales cifradas y permite un diseño distinto para PC y para móvil.
 
 - **Integraciones por nombre de contenedor** (`http://jellyfin:8096`…): sobrevivieron a la mudanza sin tocar nada. Las pocas que usan la IP del servidor necesitaron abrir el cortafuegos a las redes de Docker.
 - **Tablero** con tema "aurora / glass" y CSS propio para que todo, incluidos widgets de la comunidad, tenga el mismo estilo de cristal translúcido.
 - **Paneles de descargas hechos a medida** (Python) y metidos como iFrame, con fondo transparente y refresco cada 3 s, porque los widgets de serie se quedaban cortos.
-- **Estado de todo de un vistazo:** máquinas (Beszel), DNS (AdGuard), notificaciones, indexadores, reproducciones en curso y botones de todas las apps con su punto de estado.
+- **Estado de todo de un vistazo:** máquinas (Beszel), **alertas y bloqueos de CrowdSec**, notificaciones, indexadores, reproducciones en curso y, en una columna a la izquierda, todas las apps con su punto de estado.
 - **Útil para mantener:** el widget de indexadores destapó duplicados y fallos que ralentizaban las búsquedas.
 
 ```mermaid
