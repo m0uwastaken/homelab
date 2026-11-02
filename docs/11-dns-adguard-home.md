@@ -12,9 +12,9 @@ Desde el **31 de octubre de 2026**, el servidor tiene **AdGuard Home**: un DNS p
 
 ```mermaid
 flowchart LR
-    PC["🖥️ PC"] -->|"DNS :53"| AG["AdGuard Home<br/>(IP de casa del servidor)"]
-    MOV["📱 iPhone / iPad"] -->|"DNS :53"| AG
-    AG -->|"⛔ anuncios y rastreadores"| X["0.0.0.0"]
+    PC["PC"] -->|"DNS :53"| AG["AdGuard Home<br/>(IP de casa del servidor)"]
+    MOV["iPhone / iPad"] -->|"DNS :53"| AG
+    AG -->|"anuncios y rastreadores"| X["0.0.0.0"]
     AG -->|"DoH cifrado"| UP["Quad9 · Cloudflare"]
     subgraph SRV["Servidor"]
         AG

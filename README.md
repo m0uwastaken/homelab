@@ -93,21 +93,25 @@ _Última actualización: 2 de noviembre de 2026._
 ```mermaid
 flowchart LR
     ISP["Fibra 1 Gb"] --> LB["Router del operador"]
-    LB --> SW["Switch"]
-    SW -->|"cable"| OPT["Dell OptiPlex 7060 SFF<br/>Ubuntu Server + Docker<br/>(servidor)"]
-    LB --> PC["PC con Windows<br/>(ya solo uso personal)"]
-    LB --> CLI["Aparatos de casa"]
-    CLI --> TV1["📺 Tele LG (webOS)"]
-    CLI --> TV2["📺 Android TV /<br/>Chromecast con Google TV"]
-    CLI --> MOV["📱 Móvil y tablet"]
-    PC -.->|"DNS"| OPT
-    MOV -.->|"DNS"| OPT
+    LB -->|"cable"| SW["Switch gigabit"]
+    subgraph CABLE["Por cable, en el switch"]
+        OPT["Servidor<br/>Dell OptiPlex 7060 SFF<br/>Ubuntu Server + Docker"]
+        PC["PC con Windows<br/>(uso personal)"]
+        LAP["Portátil"]
+    end
+    SW --> OPT
+    SW --> PC
+    SW --> LAP
+    LB -.-> CLI["Resto de aparatos<br/>(Wi-Fi o cable al router)"]
+    CLI --- TV1["Tele LG (webOS)"]
+    CLI --- TV2["Android TV /<br/>Chromecast con Google TV"]
+    CLI --- MOV["Móvil y tablet"]
 ```
 
 | Elemento | Detalle |
 |---|---|
 | Router | Router del operador, fibra de 1 Gb |
-| Red de casa | `192.168.1.0/24`. El servidor tiene la misma IP fija que antes tenía el PC, y el PC otra IP fija |
+| Red de casa | `192.168.1.0/24`. El servidor, el PC y el portátil van por cable al mismo switch gigabit, así que entre ellos van a velocidad completa aunque internet esté ocupado. El servidor tiene la misma IP fija que antes tenía el PC, y el PC otra IP fija |
 | Red interna de Docker | `172.30.0.0/24`, con Caddy en una IP fija para que Jellyfin lo reconozca como proxy |
 | Puertos abiertos | Solo el **443** (Jellyfin a través de Caddy) y el puerto de escucha del cliente de descargas. Tailscale no necesita ninguno |
 | VPN | Tailscale (WireGuard) con MagicDNS: el servidor es `homelab.<mi-red>.ts.net` |
@@ -120,16 +124,16 @@ Desde el móvil se hace una petición y, sin tocar nada más, el resultado acaba
 
 ```mermaid
 flowchart LR
-    M["📱 Seerr<br/>(peticiones)"] --> ARR["Gestores de<br/>biblioteca"]
+    M["Seerr<br/>(peticiones)"] --> ARR["Gestores de<br/>biblioteca"]
     ARR -->|busca| PROW["Prowlarr<br/>proveedores /<br/>indexadores"]
     ARR -->|envía| DL["Clientes de descarga<br/>Usenet · BitTorrent"]
     DL --> DATA[("/data<br/>un solo disco,<br/>hardlinks")]
     ARR -->|renombra e importa| DATA
     BAZ["Bazarr<br/>subtítulos"] --> DATA
     DATA --> JF["Jellyfin<br/>reproducción"]
-    JF --> TV["📺 Teles y móviles"]
+    JF --> TV["Teles y móviles"]
     DEC["Decluttarr"] -.->|limpia atascos| DL
-    AV["avisos<br/>(Python)"] -.->|ntfy| PH["📱 Notificaciones"]
+    AV["avisos<br/>(Python)"] -.->|ntfy| PH["Notificaciones"]
 ```
 
 Las descargas y la biblioteca viven bajo una misma carpeta `/data`, así la importación se hace con **hardlinks**: al instante y sin ocupar el doble. Más detalle en [Descarga de ISOs](docs/01-descarga-de-isos.md).
@@ -141,12 +145,12 @@ Las descargas y la biblioteca viven bajo una misma carpeta `/data`, así la impo
 
 ```mermaid
 flowchart LR
-    FAM["📺 Familia"] -->|"HTTPS 443"| CADDY["Caddy<br/>HTTPS automático"]
-    CADDY -->|"✅ España, uso normal"| JF["Jellyfin"]
-    CADDY -->|"⛔ otros países, admin, bots"| X1["403 / 404"]
-    YO["📱 Mis aparatos<br/>con Tailscale"] -->|"WireGuard"| TS["Tailscale<br/>«homelab»"]
+    FAM["Familia"] -->|"HTTPS 443"| CADDY["Caddy<br/>HTTPS automático"]
+    CADDY -->|"España, uso normal"| JF["Jellyfin"]
+    CADDY -->|"otros países, admin, bots"| X1["403 / 404"]
+    YO["Mis aparatos<br/>con Tailscale"] -->|"WireGuard"| TS["Tailscale<br/>«homelab»"]
     TS --> APPS["Homarr · gestores · descargas<br/>Beszel · AdGuard · Home Assistant"]
-    NET["🌐 Resto de internet"] -.->|"⛔ sin puertos"| APPS
+    NET["Resto de internet"] -.->|"sin puertos"| APPS
 ```
 
 Más detalle en [Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md) y [Acceso privado: Tailscale](docs/09-acceso-privado-tailscale.md).
@@ -245,7 +249,7 @@ Desde el 26 de octubre, **Homarr v2** es la página de inicio del homelab, y des
 
 ```mermaid
 flowchart LR
-    NAV["🖥️ / 📱"] --> H["Homarr :7575"]
+    NAV["/ "] --> H["Homarr :7575"]
     H -->|API| APPS["Jellyfin · Seerr · gestores<br/>indexadores · Bazarr · AdGuard"]
     H -->|"solo lectura"| BZ["Beszel"]
     H --> NT["ntfy"]

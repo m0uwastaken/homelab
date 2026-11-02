@@ -12,13 +12,13 @@ Desde el **29 de octubre de 2026**, todo el homelab **menos Jellyfin** se usa de
 ```mermaid
 flowchart LR
     subgraph FUERA["Fuera de casa"]
-        TV["📺 Familia<br/>(app de Jellyfin)"]
-        MOV["📱 Mi móvil / portátil<br/>con Tailscale"]
+        TV["Familia<br/>(app de Jellyfin)"]
+        MOV["Mi móvil / portátil<br/>con Tailscale"]
     end
     TV -->|"HTTPS 443<br/>solo España"| CADDY["Caddy"] --> JF["Jellyfin"]
     MOV -->|"WireGuard<br/>(Tailscale)"| TS["Tailscale en el host<br/>nombre «homelab»"]
     TS --> APPS["Homarr · gestores · descargas<br/>Beszel · Home Assistant · …"]
-    X["🌐 Resto de internet"] -.->|"⛔ sin puertos abiertos"| APPS
+    X["Resto de internet"] -.->|"sin puertos abiertos"| APPS
 ```
 
 Antes de esto, todo lo que no fuera Jellyfin solo se podía usar desde casa. Abrir más puertos o publicar más servicios en Caddy no era opción: cuantos más servicios expuestos, más superficie de ataque. Con Tailscale no se abre **ningún puerto nuevo** en el router.

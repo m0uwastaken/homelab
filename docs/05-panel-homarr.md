@@ -47,7 +47,7 @@ Va en el `docker-compose.override.yml`, junto al resto de extras, y también est
 
 ```mermaid
 flowchart LR
-    NAV["🖥️ PC / 📱 Móvil"] --> H["Homarr<br/>:7575"]
+    NAV["PC / Móvil"] --> H["Homarr<br/>:7575"]
     H -->|"API (integraciones)"| APPS["Jellyfin · Seerr<br/>gestores de biblioteca<br/>indexadores · Bazarr"]
     H -->|"API"| DL["Clientes de descarga"]
     H -->|"usuario de solo lectura"| BZ["Beszel<br/>:8090"]

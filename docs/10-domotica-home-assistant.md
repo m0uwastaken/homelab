@@ -16,9 +16,9 @@ flowchart LR
         OWA --- HA
         HM["Homarr"] -.->|"token de larga duración<br/>(siguiente paso)"| HA
     end
-    OWA -->|"API web, cada ≥120 s"| CLOUD["☁️ Nube de Verisure"]
+    OWA -->|"API web, cada ≥120 s"| CLOUD["Nube de Verisure"]
     CLOUD --- CENTRAL["Central y cámaras<br/>(sin tocar)"]
-    YO["📱 Yo, por Tailscale"] --> HA
+    YO["Yo, por Tailscale"] --> HA
 ```
 
 | Pieza | Detalle |

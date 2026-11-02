@@ -13,8 +13,8 @@ Desde el **1 de noviembre de 2026**, el homelab guarda también lo personal: **f
 
 ```mermaid
 flowchart LR
-    MOV["📱 Móvil"] -->|"Tailscale"| IM["Immich"]
-    PC["🖥️ PC"] -->|"Tailscale"| NC["Nextcloud"]
+    MOV["Móvil"] -->|"Tailscale"| IM["Immich"]
+    PC["PC"] -->|"Tailscale"| NC["Nextcloud"]
     IM --> HDD[("Disco de datos<br/>fotos y archivos")]
     NC --> HDD
     IM --> SSD[("SSD<br/>bases de datos<br/>y modelos")]

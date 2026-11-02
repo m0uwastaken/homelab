@@ -30,7 +30,7 @@ flowchart LR
     DA --- SOCK --- HUB
     DA -.->|"docker.sock"| CT["Contenedores"]
     WA -->|"red local"| HUB
-    HUB -->|"alertas"| NT["ntfy → 📱"]
+    HUB -->|"alertas"| NT["ntfy → "]
     HM["Homarr"] -->|"usuario de<br/>solo lectura"| HUB
 ```
 

@@ -15,7 +15,7 @@ flowchart LR
         W["Servidor web :3001"]
     end
     L -->|API| SRC["Gestores de biblioteca<br/>clientes de descarga<br/>Jellyfin"]
-    L -->|"push"| NT["ntfy → 📱"]
+    L -->|"push"| NT["ntfy → "]
     W --> ACT["/ · Actividad"]
     W --> PN["/nzb · /torrents<br/>paneles"]
     W --> API["/api/… · JSON"]

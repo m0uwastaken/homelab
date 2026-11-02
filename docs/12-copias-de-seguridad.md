@@ -22,7 +22,7 @@ flowchart LR
     end
     CFG -->|"04:30, cada día"| WD[("Disco de copias<br/>14 días")]
     FOT -->|"cada día, con<br/>volcado de BD"| WD
-    CFG -->|"cada noche,<br/>restic cifrado"| NUBE["☁️ Almacenamiento<br/>en la nube"]
+    CFG -->|"cada noche,<br/>restic cifrado"| NUBE["Almacenamiento<br/>en la nube"]
     FOT -.->|"pendiente"| NAS["NAS futuro"]
 ```
 
