@@ -4,7 +4,7 @@
 
 Desde el **26 de octubre de 2026**, **Homarr** (v2) es la página de inicio del homelab: un único tablero desde el que veo el estado de todo y salto a cualquier servicio. Sustituye a **Homepage**, que usé hasta entonces y que quedó **retirado el 31 de octubre** (ver [Cómo era antes](#cómo-era-antes-homepage)).
 
-<!-- 📸 Captura del tablero en el PC: images/homarr-escritorio.png -->
+![Tablero de Homarr en el PC](../images/homarr-escritorio.png)
 
 ## Por qué el cambio
 
@@ -135,7 +135,9 @@ Al reutilizar las variables del tema (`--glass-bg`, `--glass-border`…), si alg
 
 Los widgets de descargas que trae Homarr son pequeños y dan poca información, así que hice dos paneles a medida. Los sirve el mismo servicio en Python que manda los avisos (puerto 3001) y se meten en Homarr como **iFrame**.
 
-<!-- 📸 Captura de los dos paneles dentro de Homarr: images/homarr-paneles.png -->
+| Panel de BitTorrent | Panel de Usenet |
+|---|---|
+| ![Panel de BitTorrent](../images/homarr-torrents.png) | ![Panel de Usenet](../images/homarr-nzb.png) |
 
 | Ruta | Qué muestra |
 |---|---|

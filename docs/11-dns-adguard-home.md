@@ -4,7 +4,9 @@
 
 Desde el **31 de octubre de 2026**, el servidor tiene **AdGuard Home**: un DNS propio que bloquea anuncios, rastreadores y dominios maliciosos para todos los aparatos que lo usan, y que resuelve hacia fuera **cifrado** (DNS over HTTPS).
 
-<!-- 📸 Captura del panel de AdGuard Home (sin dominios ni clientes a la vista): images/adguard.png -->
+![Panel de AdGuard Home: un 25 % de las consultas bloqueadas en las primeras 24 horas](../images/adguard.png)
+
+En las primeras 24 horas, solo con el PC apuntando a AdGuard: **2.996 consultas, 763 bloqueadas (25 %)**, casi todas telemetría y anuncios, con un tiempo medio de respuesta de 8 ms.
 
 **Por qué AdGuard y no Pi-hole:** bloquean lo mismo con las mismas listas, pero AdGuard trae de serie el DNS cifrado hacia fuera (DoH/DoT) y reglas más flexibles. Además, Homarr tiene un widget para él.
 

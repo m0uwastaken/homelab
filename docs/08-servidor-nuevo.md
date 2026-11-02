@@ -34,6 +34,8 @@ Sobre el papel, el cambio parece un *downgrade* en toda regla:
 | **Disponibilidad** | Mientras el PC estuviera encendido | 24/7 |
 | **Servicios** | 21 contenedores compitiendo con el uso diario del PC (RAM del PC al 83 %) | 21 contenedores en 8 GB el 31-oct; **29 contenedores con 4,6 GiB de RAM en uso** el 2-nov, tras ampliar a 16 GB y sumar DNS, fotos y archivos |
 
+<p align="center"><img src="../images/nzbget-velocidad.png" alt="NZBGet en el servidor a 771 Mb/s"><br><sub>NZBGet en el servidor, a 771 Mb/s.</sub></p>
+
 **Dónde sí se nota la CPU más modesta:** en las tareas puntuales y pesadas, como reparar y descomprimir descargas, analizar intros o sincronizar subtítulos. Tardan algo más, pero hablamos de minutos y no afectan a nada de lo que se usa en el día a día.
 
 > **Y el mejor resultado no sale en ninguna tabla:** después de una semana con mi PC personal encendido día y noche, sufriendo con todos los contenedores a cuestas, por fin lo puedo apagar.
@@ -57,7 +59,7 @@ Detalles del montaje de prueba: el NZBGet nativo usaba otro puerto (el 6789 lo t
 
 ## Hardware
 
-<!-- 📸 Foto del OptiPlex por dentro: images/optiplex-interior.jpg -->
+<p align="center"><img src="../images/optiplex-interior.jpg" alt="El OptiPlex por dentro: HDD de datos en la bahía de 3,5" y el switch al lado" width="460"></p>
 
 | Componente | Especificación |
 |---|---|

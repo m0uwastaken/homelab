@@ -60,6 +60,8 @@ El disco de copias es un HDD viejo de 1 TB en una caja USB. Su salud es buena (4
 
 **Desconexiones (1-nov, sin resolver).** Dos cortes USB con reconexión inmediata y sin errores previos. Al volver, el disco cambia de nombre de dispositivo y queda desmontado. El peligro es silencioso: **si nadie se da cuenta, las copias caen en el disco de datos**. En el segundo corte el disco sí perdió la corriente, lo que apunta a la alimentación o al adaptador de la caja.
 
+<img src="../images/ntfy-movil.png" alt="Avisos en el móvil: prueba del vigilante del disco y copia de fotos fallida" align="right" width="260">
+
 Medidas tomadas:
 
 - `e2fsck` y remontaje: limpios en los dos casos.

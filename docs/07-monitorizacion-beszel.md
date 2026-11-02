@@ -4,7 +4,9 @@
 
 Desde el **27 de octubre de 2026**, **Beszel** vigila los recursos de las máquinas del homelab, y desde el **31 de octubre** vive en el servidor nuevo. Hasta entonces no tenía forma de saber qué contenedor se comía la RAM ni cómo iban los discos sin abrir el Administrador de tareas.
 
-<!-- 📸 Captura de Beszel: images/beszel.png -->
+![Beszel: el servidor en la última hora](../images/beszel.png)
+
+<img src="../images/homarr-alertas.png" alt="Alertas de Beszel en Homarr" align="right" width="260">
 
 ## Qué mide
 

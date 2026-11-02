@@ -39,7 +39,7 @@ Sobre el papel, la mudanza fue un *downgrade*: de un Ryzen 5 5600 con 16 GB a un
 
 | | PC con Windows | OptiPlex con Ubuntu |
 |---|---|---|
-| Descargas por Usenet | ~10 MB/s | **84,9 MB/s**: más de 8 veces más rápido, cerca del máximo de la fibra |
+| Descargas por Usenet | ~10 MB/s | **84,9 MB/s**, con picos de 771 Mb/s: más de 8 veces más rápido, cerca del máximo de la fibra |
 | Transcodificar vídeo | Con el procesador | Con la gráfica integrada (Quick Sync): el procesador, libre |
 | Archivos nuevos en Jellyfin | Al siguiente escaneo | Al momento |
 | Disponibilidad | Mientras el PC estuviera encendido | 24/7, en una máquina dedicada |
@@ -161,7 +161,7 @@ Más detalle en [Acceso remoto y seguridad](docs/03-acceso-remoto-y-seguridad.md
 
 ### Servidor (desde el 31-oct)
 
-<!-- 📸 Foto del OptiPlex por dentro: images/optiplex-interior.jpg -->
+<p align="center"><img src="images/optiplex-interior.jpg" alt="El OptiPlex por dentro" width="420"></p>
 
 | Componente | Especificación |
 |---|---|
@@ -237,7 +237,7 @@ Bazarr descarga los subtítulos y los **sincroniza solos** con ffsubsync, usando
 
 ## Panel: Homarr
 
-<!-- 📸 Captura del tablero de Homarr: images/homarr-escritorio.png -->
+![Tablero de Homarr](images/homarr-escritorio.png)
 
 Desde el 26 de octubre, **Homarr v2** es la página de inicio del homelab, y desde el 31 el único panel: **Homepage**, que se configuraba con archivos YAML, quedó retirado tras la mudanza. Homarr se configura desde la propia web, guarda las credenciales cifradas y permite un diseño distinto para PC y para móvil.
 
