@@ -195,8 +195,9 @@ Más detalle del servicio en [Avisos y paneles propios](06-avisos-y-paneles.md).
 **El tablero sirve para mantener, no solo para mirar.** El widget de indexadores dejó a la vista **indexadores duplicados** (dados de alta a la vez en Prowlarr y en Jackett) y otros que fallaban en cada búsqueda y solo la ralentizaban. Con eso reorganicé los indexadores y quité los que sobraban.
 
 ## Cómo era antes: Homepage
+<img width="1753" height="1190" alt="image" src="https://github.com/user-attachments/assets/35402d04-daeb-43fd-bb38-1fe033ff3587" />
 
-Del inicio del proyecto hasta el 26 de octubre, el panel era **Homepage** ("hub", puerto 3000):
+Del inicio del proyecto hasta el 26 de octubre, el panel era **Homepage** ("hub", puerto 3000) . Una opción más simple/minimalista pero a mi gusto le faltaba mucha personalización.:
 
 - Configuración en YAML dentro de la carpeta `hub/`.
 - Un widget por servicio, con las claves de API en `hub/.env` como variables `HOMEPAGE_VAR_*`.
