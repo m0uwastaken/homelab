@@ -24,6 +24,17 @@ Documentación de mi homelab: un servidor en casa, montado en buena parte con ha
 > - **[querr](docs/15-servicios-propios.md#querr-qué-te-apetece-comer-wip)** (WIP, un proyecto en pareja) busca qué pedir a domicilio; por ahora está chungo por cómo las cadenas llevan sus APIs.
 > - **[Agentes](docs/16-agentes.md)** (en desarrollo): un vigía sin IA que avisa al móvil cuando algo falla, y Claude solo para diagnosticar cuando hace falta.
 
+<table>
+  <tr>
+    <td align="center"><a href="docs/15-servicios-propios.md#duberr-el-audio-en-castellano"><img src="images/duberr-biblioteca.jpg" alt="Biblioteca de duberr" width="400"></a><br><sub><b>duberr:</b> la biblioteca, episodio a episodio</sub></td>
+    <td align="center"><a href="docs/15-servicios-propios.md#duberr-el-audio-en-castellano"><img src="images/duberr-ajustes.jpg" alt="Ajustes de duberr" width="400"></a><br><sub><b>duberr:</b> ajustes de sincronización y mezcla</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="docs/15-servicios-propios.md#subrr-subtítulos-traducidos"><img src="images/subrr-serie.jpg" alt="Ficha de una serie en subrr" width="400"></a><br><sub><b>subrr:</b> la ficha de una serie</sub></td>
+    <td align="center"><a href="docs/15-servicios-propios.md#subrr-subtítulos-traducidos"><img src="images/subrr-motores.jpg" alt="Motores de traducción de subrr" width="400"></a><br><sub><b>subrr:</b> los motores de traducción</sub></td>
+  </tr>
+</table>
+
 <p align="center"><a href="docs/05-panel-homarr.md"><img src="images/homarr-escritorio.png" alt="Tablero de Homarr: el panel central del homelab"></a></p>
 
 <p align="center"><b>El panel central del homelab, en Homarr.</b> Las dos máquinas, los bloqueos de CrowdSec, las notificaciones, las gráficas del servidor y todas las apps con su punto de estado, en una sola pantalla.<br><sub>Las alertas de seguridad son de mis propias pruebas con escáneres web. Algunos datos están tapados.</sub></p>
