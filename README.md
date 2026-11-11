@@ -18,6 +18,12 @@
 
 Documentación de mi homelab: un servidor en casa, montado en buena parte con hardware reciclado.
 
+> **Novedades (11 de noviembre de 2026).** El homelab ya no solo usa software de otros: ahora tiene **sus primeros servicios desarrollados por mí** (*vibecodeados* con Claude Code), que por ahora son herramientas personales y tendrán su propio repo más adelante.
+> - **[subrr](docs/15-servicios-propios.md#subrr-subtítulos-traducidos)** traduce los subtítulos que ya traen mis series y películas, cuando Bazarr no encuentra ninguno en castellano.
+> - **[duberr](docs/15-servicios-propios.md#duberr-el-audio-en-castellano)** busca el audio en castellano y lo mezcla con la mejor imagen disponible.
+> - **[querr](docs/15-servicios-propios.md#querr-qué-te-apetece-comer-wip)** (WIP, un proyecto en pareja) busca qué pedir a domicilio; por ahora está chungo por cómo las cadenas llevan sus APIs.
+> - **[Agentes](docs/16-agentes.md)** (en desarrollo): un vigía sin IA que avisa al móvil cuando algo falla, y Claude solo para diagnosticar cuando hace falta.
+
 <p align="center"><a href="docs/05-panel-homarr.md"><img src="images/homarr-escritorio.png" alt="Tablero de Homarr: el panel central del homelab"></a></p>
 
 <p align="center"><b>El panel central del homelab, en Homarr.</b> Las dos máquinas, los bloqueos de CrowdSec, las notificaciones, las gráficas del servidor y todas las apps con su punto de estado, en una sola pantalla.<br><sub>Las alertas de seguridad son de mis propias pruebas con escáneres web. Algunos datos están tapados.</sub></p>
@@ -67,7 +73,7 @@ Del 30–31 de octubre: la [mudanza al OptiPlex](docs/08-servidor-nuevo.md#la-mu
 
 El historial completo, con cómo era cada parte antes, está en el [registro de cambios](CHANGELOG.md).
 
-_Última actualización: 3 de noviembre de 2026._
+_Última actualización: 11 de noviembre de 2026._
 
 ## Índice
 
@@ -196,6 +202,10 @@ Todo corre en contenedores con Docker Compose, salvo Tailscale, que va instalado
 | | **Beszel** | Monitorización de recursos y alertas, del servidor y del PC | Casa |
 | | **docker-socket-proxy** | Acceso de solo lectura a Docker, para que Beszel no necesite el socket | Solo el propio servidor |
 | | **avisos** (propio) | Notificaciones por ntfy y paneles propios para Homarr | Casa |
+| | **Vigía y agentes** (propios, en desarrollo) | Vigilancia sin IA y diagnósticos con Claude. Detalle en [su página](docs/16-agentes.md) | Solo interno |
+| Servicios propios | **subrr** | Traduce subtítulos cuando Bazarr no encuentra. Detalle en [su página](docs/15-servicios-propios.md) | Casa |
+| | **duberr** | Audio en castellano mezclado con la mejor calidad | Casa |
+| | **querr** (WIP) | Restaurantes con reparto y sus ofertas | Casa |
 | Red | **AdGuard Home** | DNS con bloqueo de anuncios y rastreadores, DoH hacia fuera | Casa |
 | Personal | **Immich** | Fotos, con subida automática desde el móvil | Solo Tailscale |
 | | **Nextcloud** | Archivos | Solo Tailscale |
@@ -377,6 +387,8 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 - [x] **Fotos y archivos** con Immich y Nextcloud (1-nov).
 - [x] **Seguridad, fase 1:** CrowdSec en Caddy y docker-socket-proxy (2-nov).
 - [x] **Primeras copias automáticas**, todas correctas (2-nov).
+- [x] **Primeros servicios propios:** subrr y duberr (herramientas personales, con repo propio más adelante) y querr, en WIP (11-nov).
+- [ ] **Agentes:** activar el supervisor y el triaje con IA, y un informe semanal (en desarrollo).
 - [ ] **Resolver los cortes USB** del disco de copias.
 - [ ] **Restauración de prueba** de la copia cifrada.
 - [ ] **Limpiar un bloqueador sobrante de CrowdSec**, y otros flecos menores del 2-nov.
@@ -409,6 +421,8 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 | [12 · Copias de seguridad](docs/12-copias-de-seguridad.md) | Copia local, copia cifrada fuera de casa, la primera noche completa y el disco de copias inestable |
 | [13 · Fotos y archivos](docs/13-fotos-y-archivos.md) | Immich y Nextcloud: diseño del almacenamiento y copias |
 | [14 · Problemas resueltos](docs/14-problemas-resueltos.md) | Registro de fallos: síntoma, causa y solución |
+| [15 · Servicios propios](docs/15-servicios-propios.md) | subrr, duberr y querr: los primeros servicios desarrollados por mí (herramientas personales) |
+| [16 · Agentes](docs/16-agentes.md) | Vigía sin IA, supervisor con Claude y subagentes. En desarrollo |
 | [Registro de cambios](CHANGELOG.md) | Evolución del homelab y cómo era cada parte antes |
 
 ## Estructura del repositorio

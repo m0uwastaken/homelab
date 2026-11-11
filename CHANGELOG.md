@@ -4,6 +4,14 @@
 
 Cómo ha ido evolucionando el homelab, de lo más reciente a lo más antiguo. Las versiones anteriores de cada parte siguen descritas aquí aunque ya se hayan sustituido.
 
+## 11 de noviembre de 2026: primeros servicios propios y agentes
+
+- **subrr:** traduce los subtítulos que ya traen mis series y películas cuando Bazarr no encuentra ninguno, con una cadena de motores de traducción y OCR para subtítulos de imagen. Arreglo del día: al desactivar «saltar si el audio ya está en el idioma», los episodios que se habían saltado vuelven a la cola solos. Más en [Servicios propios](docs/15-servicios-propios.md#subrr-subtítulos-traducidos).
+- **duberr:** busca el audio en castellano, lo mide contra el original y lo mezcla con la mejor imagen disponible, sin recodificar y con deshacer durante 14 días. Más en [Servicios propios](docs/15-servicios-propios.md#duberr-el-audio-en-castellano).
+- **querr (WIP):** buscador de restaurantes con reparto, en pareja; por ahora solo funciona bien con Just Eat porque el resto de cadenas protege sus APIs.
+- **Los tres son herramientas personales** desarrolladas con Claude Code (vibecoding) y tendrán su propio repo más adelante.
+- **Agentes (en desarrollo):** vigía sin IA con avisos al móvil, vigilancia del pipeline de descargas, subagentes y supervisor con Claude en solo lectura (apagado). Más en [Agentes](docs/16-agentes.md).
+
 ## 3 de noviembre de 2026: CrowdSec, a prueba
 
 - **Consola web de CrowdSec** (plan gratuito): el servidor inscrito; hizo falta reiniciar CrowdSec para que empezara a sincronizar. Una alerta de prueba con una IP de documentación llegó a la consola.
