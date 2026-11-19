@@ -18,6 +18,11 @@
 
 Documentación de mi homelab: un servidor en casa, montado en buena parte con hardware reciclado.
 
+> **Novedades (19 de noviembre de 2026).** **AdGuard Home ya reparte también el DHCP**: el router del operador no deja cambiar sus DNS, así que le apagué el DHCP y ahora lo hace el servidor.
+> - Cada aparato que se conecta recibe solo la IP, la puerta de enlace y el **DNS con bloqueo de anuncios**, sin configurar nada a mano en móviles, tablets ni ordenadores.
+> - Para que sea seguro, el servidor pasó a tener una **IP estática de verdad** (antes era solo una reserva del router) y AdGuard a ejecutarse en **modo host** para ver la red local.
+> - Más en el [registro de cambios](CHANGELOG.md#19-de-noviembre-de-2026-adguard-home-reparte-el-dhcp).
+
 > **Novedades (11 de noviembre de 2026).** El homelab ya no solo usa software de otros: ahora tiene **sus primeros servicios desarrollados por mí** (*vibecodeados* con Claude Code), que por ahora son herramientas personales y tendrán su propio repo más adelante.
 > - **[subrr](docs/15-servicios-propios.md#subrr-subtítulos-traducidos)** traduce los subtítulos que ya traen mis series y películas, cuando Bazarr no encuentra ninguno en castellano.
 > - **[duberr](docs/15-servicios-propios.md#duberr-el-audio-en-castellano)** busca el audio en castellano y lo mezcla con la mejor imagen disponible.
@@ -314,7 +319,7 @@ Más en [Acceso privado: Tailscale](docs/09-acceso-privado-tailscale.md).
 
 ## DNS: AdGuard Home
 
-Desde el 31 de octubre, el servidor es también el **DNS** de mis aparatos: bloquea anuncios, rastreadores y dominios maliciosos con la lista **HaGeZi Pro** y resuelve hacia fuera **cifrado** (DoH con Quad9 y Cloudflare). Escucha solo en la IP de casa del servidor, para convivir con el DNS del propio Ubuntu y con Tailscale. El router del operador no permite repartirlo por DHCP, así que de momento se configura aparato por aparato; para toda la casa hará falta un router propio. Más en [DNS: AdGuard Home](docs/11-dns-adguard-home.md).
+Desde el 31 de octubre, el servidor es también el **DNS** de mis aparatos: bloquea anuncios, rastreadores y dominios maliciosos con la lista **HaGeZi Pro** y resuelve hacia fuera **cifrado** (DoH con Quad9 y Cloudflare). Escucha solo en la IP de casa del servidor, para convivir con el DNS del propio Ubuntu y con Tailscale. El router del operador no permite cambiar sus DNS, así que desde el 19 de noviembre **AdGuard reparte también el DHCP** (con el del router apagado): cada aparato recibe el DNS solo, sin configurarlo a mano, y las dos máquinas fijas tienen su reserva. Para eso AdGuard corre en modo host y el servidor tiene IP estática; si el servidor se cae, la casa se queda sin DHCP, y la salida de emergencia es volver a encender el del router. Más en [DNS: AdGuard Home](docs/11-dns-adguard-home.md).
 
 ## Domótica: Home Assistant
 
@@ -410,7 +415,8 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 - [ ] **Versionar la configuración en git** (compose, Caddyfile, scripts), sin claves.
 - [ ] **Homarr:** diseño para móvil e integración con Home Assistant.
 - [ ] **Home Assistant:** app en el móvil y automatizaciones.
-- [ ] **Router propio** para repartir AdGuard a toda la casa y separar la red.
+- [x] **AdGuard para toda la casa** sin necesidad de router propio: reparte también el DHCP (19-nov).
+- [ ] **Router propio** para separar la red (cámaras, invitados).
 
 ---
 

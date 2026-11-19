@@ -4,6 +4,16 @@
 
 Cómo ha ido evolucionando el homelab, de lo más reciente a lo más antiguo. Las versiones anteriores de cada parte siguen descritas aquí aunque ya se hayan sustituido.
 
+## 19 de noviembre de 2026: AdGuard Home reparte el DHCP
+
+- **Por qué:** el router del operador no permite cambiar sus DNS, así que el bloqueo de anuncios había que configurarlo aparato por aparato. Solución: apagar el DHCP del router y que lo haga AdGuard Home, que entrega a cada aparato su propia IP como DNS.
+- **IP estática de verdad:** hasta entonces el servidor la tenía por DHCP, con una reserva en el router. Pasó a estar fijada en el propio sistema (netplan), imprescindible porque ahora es él quien reparte las IPs. Se aplicó con `netplan try`, que vuelve atrás solo si se pierde la red.
+- **AdGuard en modo host:** el servidor DHCP necesita ver los broadcast de la red local y desde la red interna de Docker no los ve. Al pasar a modo host hubo que fijar en qué IP escucha el DNS (para no chocar con el DNS del propio Ubuntu) y mover el panel a su puerto.
+- **Cortafuegos:** hizo falta abrir el puerto 67/udp. La regla general de «toda la red local» no lo cubre, porque la petición inicial de un aparato que aún no tiene IP sale desde `0.0.0.0`.
+- **Dos reservas estáticas** (servidor y PC), el mismo rango que usaba el router y la puerta de enlace sigue siendo el router.
+- **Un detalle:** el botón «Comprobar si hay servidores DHCP» de AdGuard no sirve dentro de Docker (no puede saber si la IP es estática y solo enseña un aviso rojo, falso). Lo verifiqué por el registro de AdGuard y con `ipconfig /all` en el PC: concesión del servidor, puerta de enlace correcta y `nslookup` de un dominio de anuncios devolviendo `0.0.0.0`.
+- **El riesgo:** si el servidor se cae, la casa se queda sin DHCP. Los aparatos conservan su IP hasta que caduca la concesión (24 h) y la salida de emergencia es volver a encender el DHCP del router.
+
 ## 11 de noviembre de 2026: primeros servicios propios y agentes
 
 - **subrr:** traduce los subtítulos que ya traen mis series y películas cuando Bazarr no encuentra ninguno, con una cadena de motores de traducción y OCR para subtítulos de imagen. Arreglo del día: al desactivar «saltar si el audio ya está en el idioma», los episodios que se habían saltado vuelven a la cola solos. Más en [Servicios propios](docs/15-servicios-propios.md#subrr-subtítulos-traducidos).
