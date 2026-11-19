@@ -18,6 +18,12 @@
 
 Documentación de mi homelab: un servidor en casa, montado en buena parte con hardware reciclado.
 
+> **Novedades (17–19 de noviembre de 2026).** **moubot, el chat del homelab, ahora piensa con IA gratuita y consulta por su cuenta.**
+> - Un servicio nuevo, **FreeLLMAPI**, junta los niveles gratuitos de Groq, Google, NVIDIA y OpenRouter en una sola API, con relevo automático.
+> - moubot consulta el estado, los logs y **mi propia documentación** (indexada en el servidor), recuerda las conversaciones y elige solo el modo según lo que le pidas: consultar, leer archivos, razonar o hacer un cambio.
+> - Además, **Jackett vuelve a funcionar**: el puente SOCKS5 interno cortaba las conexiones y con el proxy en modo HTTP se arregló.
+> - Más en el [registro de cambios](CHANGELOG.md#1719-de-noviembre-de-2026-moubot-crece-ia-gratuita-y-jackett-arreglado) y en [Agentes](docs/16-agentes.md#moubot-el-chat-del-homelab).
+
 > **Novedades (19 de noviembre de 2026).** **AdGuard Home ya reparte también el DHCP**: el router del operador no deja cambiar sus DNS, así que le apagué el DHCP y ahora lo hace el servidor.
 > - Cada aparato que se conecta recibe solo la IP, la puerta de enlace y el **DNS con bloqueo de anuncios**, sin configurar nada a mano en móviles, tablets ni ordenadores.
 > - Para que sea seguro, el servidor pasó a tener una **IP estática de verdad** (antes era solo una reserva del router) y AdGuard a ejecutarse en **modo host** para ver la red local.
@@ -392,6 +398,9 @@ Una selección; la lista completa, con síntoma, causa y solución, está en [Pr
 | La integración oficial de Verisure no inicia sesión | Habla con MyPages; las cuentas de España están en OWA | Integración comunitaria Verisure OWA |
 | SMART idéntico en dos discos distintos | El adaptador USB mezclaba los datos con dos discos a la vez | Revisarlos de uno en uno |
 | `:ro` en el socket de Docker no protegía nada | A través del socket se habla con toda la API de Docker | docker-socket-proxy de solo lectura |
+| Jackett: todos los indexadores fallaban con errores de proxy | Con el proxy en SOCKS5, Jackett usa un puente interno que cortaba las conexiones | Proxy en modo HTTP, que el contenedor de WARP también acepta |
+| Una orden aprobada en el chat se seguía denegando | La herramienta solo escribe en su carpeta de trabajo aunque la orden esté permitida | Declarar aparte las carpetas de datos |
+| Un modelo recomendó actualizar qBittorrent, que está fijado a propósito | El modelo no conocía las reglas del homelab | Las reglas van siempre en el contexto |
 
 ---
 

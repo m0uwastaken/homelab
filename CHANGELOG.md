@@ -4,6 +4,23 @@
 
 Cómo ha ido evolucionando el homelab, de lo más reciente a lo más antiguo. Las versiones anteriores de cada parte siguen descritas aquí aunque ya se hayan sustituido.
 
+## 17–19 de noviembre de 2026: moubot crece, IA gratuita y Jackett arreglado
+
+- **IA gratuita para todo el homelab:** monté FreeLLMAPI, un servicio que junta en una sola API los niveles gratuitos de varios proveedores (Groq, Google AI Studio, NVIDIA y OpenRouter) y pasa al siguiente cuando uno se queda sin cuota. Habla el mismo idioma que las APIs de OpenAI y de Anthropic, así que lo pueden usar a la vez el chat, los agentes y las herramientas de línea de órdenes.
+- **Lo que aprendí probándolo:** Groq responde en 0,2–0,6 s, pero su límite de tokens por minuto se agota tras dos o tres preguntas seguidas. Los modelos rápidos de Google devolvían a menudo «demasiada demanda» (503) y algunos de NVIDIA se quedaban en cola más de 25 s. Por eso el orden de relevo importa: primero Groq, luego OpenRouter, Google y NVIDIA. Y en vez de dejar que el servicio elija solo, fijé los modelos concretos que responden rápido.
+- **moubot, el chat del homelab, rehecho:**
+  - **Modo Gratis con herramientas:** en vez de recibir un extracto fijo del estado, el modelo puede consultar por su cuenta, solo leyendo, el estado de los contenedores y los discos, el pipeline de descargas (sin nombres), los errores de los logs de una lista cerrada, los informes y mi propia documentación.
+  - **Índice de la documentación:** la documentación del homelab está troceada por secciones en un índice de búsqueda de texto completo (SQLite FTS5) que no sale del servidor y se rehace solo cuando cambia un archivo. Sin embeddings: para unos 100 KB en castellano, la búsqueda por palabras basta y no depende de nada.
+  - **Las reglas del homelab siempre en el contexto:** en las primeras pruebas, a la pregunta «¿por qué no se actualiza qBittorrent?» un modelo recomendó actualizarlo, cuando está fijado a propósito porque la versión siguiente cuelga la web. Ahora las reglas viajan con cada pregunta y la respuesta es la correcta.
+  - **Memoria:** las conversaciones se guardan en el servidor 30 días, se recuperan al recargar y lo antiguo se resume solo. Si una conversación pasa de un modo a otro, el nuevo modelo recibe lo hablado.
+  - **Modo Auto:** elige el modo con reglas fijas, sin gastar IA en decidir: consultas → gratis; leer archivos → un modelo pequeño; razonar → uno grande; pedir un cambio → directamente al modo con escritura (con PIN).
+  - **Uso a la vista:** un indicador con las respuestas por modo y por proveedor, el tiempo de respuesta y el coste de los modelos de pago a precio de lista.
+- **El modo con escritura, más útil y igual de seguro:** reinicia, levanta y reconstruye servicios sin preguntar, pero borrar, mover y copiar pasan por un guardián que revisa cada ruta. Solo deja borrar en carpetas de temporales y copias, y nunca con comodines, órdenes encadenadas ni archivos de claves. Sigue sin poder tirar el stack, borrar volúmenes ni usar `sudo`. Dos tropiezos por el camino:
+  - Una orden aprobada con el botón se seguía denegando: la herramienta solo deja escribir dentro de su carpeta de trabajo, aunque la orden esté permitida. Hubo que declarar aparte las carpetas de datos.
+  - Para mirar dentro de un contenedor pedía `docker exec`, que está prohibido porque permite cualquier cosa y vuelca contraseñas. Ahora tiene una herramienta propia de solo lectura (variables, red, volúmenes, procesos y archivos de configuración) que tapa los secretos.
+- **Orden:** 167 copias de seguridad de archivos editados (las que hago antes de cada cambio) movidas a una carpeta aparte, con la misma ruta y un manifiesto para deshacer. Ya no estorban en las búsquedas.
+- **Jackett, arreglado:** los cuatro indexadores llevaban casi un día fallando con errores de proxy y conexiones cortadas a mitad. Las webs respondían bien por el proxy (WARP), así que el problema no era la salida. Con el proxy en modo SOCKS5, Jackett monta un puente interno que era el que cortaba; el contenedor de WARP acepta también proxy HTTP en el mismo puerto, y con ese cambio volvieron los resultados.
+
 ## 19 de noviembre de 2026: AdGuard Home reparte el DHCP
 
 - **Por qué:** el router del operador no permite cambiar sus DNS, así que el bloqueo de anuncios había que configurarlo aparato por aparato. Solución: apagar el DHCP del router y que lo haga AdGuard Home, que entrega a cada aparato su propia IP como DNS.
