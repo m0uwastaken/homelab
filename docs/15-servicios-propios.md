@@ -4,7 +4,7 @@
 
 Hasta ahora todo lo que corría en el homelab lo había hecho otra gente: yo lo instalaba y lo configuraba. **subrr y duberr son los primeros servicios del homelab que desarrollo yo**, o más bien que dirijo yo: están *vibecodeados* con Claude Code. Yo pongo la idea, pruebo con mis series y mis fallos reales y decido qué se queda; Claude escribe el código a mi lado, en el propio servidor.
 
-> **Por ahora son herramientas personales.** Hacen lo que yo necesito, con mi biblioteca y mis ajustes, y no están pensadas todavía para que las use otra persona. subrr y duberr tendrán su **propio repositorio** más adelante; cuando existan, lo enlazaré desde aquí.
+> **Cada uno tiene su propio repositorio:** [subrr](https://github.com/m0uwastaken/subrr) y [duberr](https://github.com/m0uwastaken/duberr), con su instalación, su configuración y su integración con Sonarr y Radarr. Aquí cuento por qué los hice y cómo los uso en mi homelab. Son proyectos personales en fase 0.1: funcionan con mi biblioteca y pueden tener aristas.
 
 Son imágenes propias, construidas en el servidor, y están en el panel de Homarr como cualquier otra app.
 
@@ -21,6 +21,12 @@ Son imágenes propias, construidas en el servidor, y están en el panel de Homar
 
 **Un arreglo reciente (11-nov):** el ajuste «saltar si el audio ya está en el idioma» marcaba los episodios como terminados para siempre. Al desactivarlo no se reprocesaba nada, y sacar la serie y volver a ponerla tampoco, porque el estado va por archivo de vídeo. Ahora, al desactivarlo, esos episodios vuelven a la cola solos.
 
+<p align="center"><img src="../images/subrr-serie.jpg" alt="Ficha de una serie en subrr" width="640"></p>
+<p align="center"><sub>La ficha de una serie en subrr: leyendo por OCR los subtítulos de imagen de un episodio, y el botón para reintentar los que se saltaron porque el audio ya estaba en castellano.</sub></p>
+
+<p align="center"><img src="../images/subrr-motores.jpg" alt="Ajustes de motores de traducción en subrr" width="640"></p>
+<p align="center"><sub>Los motores de traducción: se usa el primero de la lista que valga y tenga cupo, y lo que hace un motor de reserva se marca como provisional para rehacerlo después.</sub></p>
+
 ## duberr: el audio en castellano
 
 **Qué problema resuelve:** muchas series y películas en buena calidad solo traen el audio original, y las versiones con castellano suelen ser de peor calidad. Quiero **la mejor imagen con el audio en castellano**.
@@ -32,6 +38,12 @@ Son imágenes propias, construidas en el servidor, y están en el panel de Homar
 - **Por episodio:** mientras ninguno tiene castellano usa un perfil de calidad pensado para encontrarlo; en cuanto lo tiene, el episodio pasa a un perfil de calidad.
 - **Deshacer:** cada mezcla deja una copia del archivo anterior durante 14 días y puede deshacerse desde la ficha del episodio. Tiene también vista previa de audio, para oír el original y el castellano a la vez.
 - **Seguro con los torrents:** nunca modifica un archivo existente (sería modificar un torrent enlazado) y no toca los que siguen compartiéndose.
+
+<p align="center"><img src="../images/duberr-biblioteca.jpg" alt="Biblioteca de duberr" width="640"></p>
+<p align="center"><sub>La biblioteca de duberr: por cada serie, cuántos episodios tienen castellano, cuántos están en la mejor calidad y cuántos ya están mezclados, con un cuadrito por episodio.</sub></p>
+
+<p align="center"><img src="../images/duberr-ajustes.jpg" alt="Ajustes de sincronización y mezcla en duberr" width="640"></p>
+<p align="center"><sub>Los ajustes de duberr: cuánto exigir para dar la sincronía por buena, cómo detectar la velocidad del castellano y qué hacer con las escenas que no existen en castellano. Cada serie o episodio puede cambiarlos en su ficha.</sub></p>
 
 ## querr: «¿qué te apetece comer?» (WIP)
 

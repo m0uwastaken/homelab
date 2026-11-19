@@ -3,7 +3,7 @@
 Carpeta para las capturas de pantalla del homelab. En la documentación hay comentarios invisibles (`<!-- 📸 ... -->`) en el sitio donde va cada una: al añadirla, sustituye el comentario por la imagen.
 
 ```markdown
-![Tablero de Homarr](images/homarr-escritorio.png)
+![Tablero de Homarr](homarr-escritorio.png)
 ```
 
 Desde una página de `docs/`, la ruta lleva `../` delante, por ejemplo `../images/beszel.png`.

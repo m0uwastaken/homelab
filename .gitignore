@@ -1,0 +1,14 @@
+# Copias de seguridad de edición y restos locales
+*.antes-*
+*.obsoleto
+*.bak
+*.orig
+*~
+.DS_Store
+Thumbs.db
+
+# Nunca subir secretos
+.env
+*.env
+*.pem
+*.key
